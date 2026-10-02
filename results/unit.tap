@@ -1,0 +1,232 @@
+TAP version 13
+# Subtest: default has no access; current-tab activation is temporary and top-level
+ok 1 - default has no access; current-tab activation is temporary and top-level
+  ---
+  duration_ms: 4.878996
+  type: 'test'
+  ...
+# Subtest: remembered access needs a grant; forgetting removes permission and scripts
+ok 2 - remembered access needs a grant; forgetting removes permission and scripts
+  ---
+  duration_ms: 4.617634
+  type: 'test'
+  ...
+# Subtest: global pause overrides sessions and clear removes all settings/access
+ok 3 - global pause overrides sessions and clear removes all settings/access
+  ---
+  duration_ms: 3.55149
+  type: 'test'
+  ...
+# Subtest: content scripts can obtain their own config but cannot mutate controls
+ok 4 - content scripts can obtain their own config but cannot mutate controls
+  ---
+  duration_ms: 6.559042
+  type: 'test'
+  ...
+# Subtest: options pages opened in a tab can control settings; partial updates preserve pause
+ok 5 - options pages opened in a tab can control settings; partial updates preserve pause
+  ---
+  duration_ms: 1.60889
+  type: 'test'
+  ...
+# Subtest: a protected page injection failure never stores a misleading enabled state
+ok 6 - a protected page injection failure never stores a misleading enabled state
+  ---
+  duration_ms: 1.472955
+  type: 'test'
+  ...
+# Subtest: clear revokes unused optional grants and forgetting switches off other tabs on that site
+ok 7 - clear revokes unused optional grants and forgetting switches off other tabs on that site
+  ---
+  duration_ms: 1.468308
+  type: 'test'
+  ...
+# Subtest: controller redirects one trusted previewed near miss; synthetic events cannot opt in
+ok 8 - controller redirects one trusted previewed near miss; synthetic events cannot opt in
+  ---
+  duration_ms: 7.766458
+  type: 'test'
+  ...
+# Subtest: controller leaves a native click and modifier clicks unchanged
+ok 9 - controller leaves a native click and modifier clicks unchanged
+  ---
+  duration_ms: 7.592277
+  type: 'test'
+  ...
+# Subtest: controller never delivers on a drag, text selection, sensitive start, or lost focus
+ok 10 - controller never delivers on a drag, text selection, sensitive start, or lost focus
+  ---
+  duration_ms: 6.042697
+  type: 'test'
+  ...
+# Subtest: removed or moving targets and occluded adapter targets are not activated
+ok 11 - removed or moving targets and occluded adapter targets are not activated
+  ---
+  duration_ms: 8.704709
+  type: 'test'
+  ...
+# Subtest: Escape pauses, configure resumes, and global off blocks assistance
+ok 12 - Escape pauses, configure resumes, and global off blocks assistance
+  ---
+  duration_ms: 1.476701
+  type: 'test'
+  ...
+# Subtest: small native slip is corrected and repeat guard stops the second click only
+ok 13 - small native slip is corrected and repeat guard stops the second click only
+  ---
+  duration_ms: 2.198125
+  type: 'test'
+  ...
+# Subtest: Alt released outside the window cannot leave bypass stuck after blur
+ok 14 - Alt released outside the window cannot leave bypass stuck after blur
+  ---
+  duration_ms: 1.240916
+  type: 'test'
+  ...
+# Subtest: element blur during normal focus change must not cancel a near miss
+ok 15 - element blur during normal focus change must not cancel a near miss
+  ---
+  duration_ms: 1.318834
+  type: 'test'
+  ...
+# Subtest: native click is untouched; a clear near miss and small slip redirect once
+ok 16 - native click is untouched; a clear near miss and small slip redirect once
+  ---
+  duration_ms: 2.043884
+  type: 'test'
+  ...
+# Subtest: 400 px drag and drag returning to start never redirect
+ok 17 - 400 px drag and drag returning to start never redirect
+  ---
+  duration_ms: 0.258549
+  type: 'test'
+  ...
+# Subtest: a different native control is never reassigned, even if selector prefers a
+ok 18 - a different native control is never reassigned, even if selector prefers a
+  ---
+  duration_ms: 0.23312
+  type: 'test'
+  ...
+# Subtest: bypass, modifiers represented by bypass, touch, keyboard, and long hold pass
+ok 19 - bypass, modifiers represented by bypass, touch, keyboard, and long hold pass
+  ---
+  duration_ms: 0.385329
+  type: 'test'
+  ...
+# Subtest: unpreviewed, cancelled, stale and wrong-pointer gestures abstain
+ok 20 - unpreviewed, cancelled, stale and wrong-pointer gestures abstain
+  ---
+  duration_ms: 0.217457
+  type: 'test'
+  ...
+# Subtest: repeat guard affects only a second nearby safe mouse gesture
+ok 21 - repeat guard affects only a second nearby safe mouse gesture
+  ---
+  duration_ms: 0.492761
+  type: 'test'
+  ...
+# Subtest: repeat guard is configurable and never suppresses far-away clicks on a large target
+ok 22 - repeat guard is configurable and never suppresses far-away clicks on a large target
+  ---
+  duration_ms: 0.19312
+  type: 'test'
+  ...
+# Subtest: identical seeds generate byte-identical motions; changed seeds change paths
+ok 23 - identical seeds generate byte-identical motions; changed seeds change paths
+  ---
+  duration_ms: 7.306878
+  type: 'test'
+  ...
+# Subtest: generated traces validate; every mode accounts for every trial
+ok 24 - generated traces validate; every mode accounts for every trial
+  ---
+  duration_ms: 48.550985
+  type: 'test'
+  ...
+# Subtest: no-tremor simulation preserves all native clicks under every mode
+ok 25 - no-tremor simulation preserves all native clicks under every mode
+  ---
+  duration_ms: 119.584717
+  type: 'test'
+  ...
+# Subtest: bad imports reject missing release, invalid geometry, order and intended ID
+ok 26 - bad imports reject missing release, invalid geometry, order and intended ID
+  ---
+  duration_ms: 1.125022
+  type: 'test'
+  ...
+# Subtest: selection result is separate from delivered result
+ok 27 - selection result is separate from delivered result
+  ---
+  duration_ms: 0.686091
+  type: 'test'
+  ...
+# Subtest: rectangle geometry, corners, inside, and invalid input
+ok 28 - rectangle geometry, corners, inside, and invalid input
+  ---
+  duration_ms: 0.936678
+  type: 'test'
+  ...
+# Subtest: probability is symmetric, finite, and rewards an interior point
+ok 29 - probability is symmetric, finite, and rewards an interior point
+  ---
+  duration_ms: 0.424829
+  type: 'test'
+  ...
+# Subtest: selection waits for preview acquisition and abstains in a symmetric gap
+ok 30 - selection waits for preview acquisition and abstains in a symmetric gap
+  ---
+  duration_ms: 1.108948
+  type: 'test'
+  ...
+# Subtest: hysteresis rejects oscillation and switches after a deliberate move
+ok 31 - hysteresis rejects oscillation and switches after a deliberate move
+  ---
+  duration_ms: 2.513039
+  type: 'test'
+  ...
+# Subtest: gaps, backwards time, disappeared targets, and invalid samples reset memory
+ok 32 - gaps, backwards time, disappeared targets, and invalid samples reset memory
+  ---
+  duration_ms: 0.242625
+  type: 'test'
+  ...
+# Subtest: spatial index equals full scan for 5,000 random rectangles and boundary queries
+ok 33 - spatial index equals full scan for 5,000 random rectangles and boundary queries
+  ---
+  duration_ms: 43.555033
+  type: 'test'
+  ...
+# Subtest: random pointer paths return only eligible candidate IDs or null
+ok 34 - random pointer paths return only eligible candidate IDs or null
+  ---
+  duration_ms: 8.277107
+  type: 'test'
+  ...
+# Subtest: site scopes use scheme and host, exclude browser/file schemes and ignore ports
+ok 35 - site scopes use scheme and host, exclude browser/file schemes and ignore ports
+  ---
+  duration_ms: 1.264522
+  type: 'test'
+  ...
+# Subtest: settings are bounded, deduplicated and exclude unrecognized fields
+ok 36 - settings are bounded, deduplicated and exclude unrecognized fields
+  ---
+  duration_ms: 1.292393
+  type: 'test'
+  ...
+# Subtest: null and malformed stored settings fall back to a usable default
+ok 37 - null and malformed stored settings fall back to a usable default
+  ---
+  duration_ms: 0.248234
+  type: 'test'
+  ...
+1..37
+# tests 37
+# suites 0
+# pass 37
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 286.077034

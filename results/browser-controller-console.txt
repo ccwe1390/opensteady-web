@@ -1,0 +1,22 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> opensteady-web@0.1.0 test:browser
+> node test/browser.cjs
+
+PASS first native click preserves trusted event sequence
+PASS previewed near miss delivers exactly one click
+PASS near-miss drag never activates selected target
+PASS synthetic page events cannot trigger assistance
+PASS modifier near miss remains an ordinary miss
+PASS risky and covered targets receive no redirected click
+PASS target movement during a press cancels correction
+PASS small slip off a directly pressed button is rescued
+PASS repeat guard blocks only second activation; disabling restores both
+PASS keyboard activation and text editing remain native
+PASS Escape pauses page, explicit enable resumes
+PASS trusted-only control demonstrates redirect limitation
+PASS native checkbox, nested label, and iframe clicks work
+PASS a removed target and an unlabeled control receive no correction
+PASS double-click text selection is preserved
+PASS 5,000-link indexing preserves native clicks; 6,000-control cap abstains
+PASS lab simulation and recording exports run without page errors

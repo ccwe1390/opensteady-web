@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OpenSteady settings</title><link rel="stylesheet" href="styles.css"></head><body><main>
+<h1>OpenSteady Web</h1><p class="muted">Version 0.1.0 · Early release for Chrome and Edge desktop.</p>
+<section class="card"><h2>Assistance</h2>
+<label class="check"><input id="enabled" type="checkbox">Enable assistance on the tabs and sites I choose</label>
+<label class="check"><input id="doubleGuard" type="checkbox">Block repeated clicks on the same control within 300 milliseconds</label>
+<label for="mode">Target selection</label><select id="mode"><option value="stable">Steady selection (smoothing and memory)</option><option value="nearest">Nearest target (comparison baseline)</option></select>
+<p><small>Near misses need a visible outline first. Correct clicks pass through. Hold <kbd>Alt</kbd> to bypass. Press <kbd>Escape</kbd> to pause a page, then use the toolbar to resume.</small></p>
+<button id="save" class="primary">Save settings</button><p id="status" role="status"></p><p id="error" class="error" role="alert"></p></section>
+<h2>Sites you enabled</h2><ul id="sites"></ul><p class="muted">Use the toolbar on a site to turn it off and revoke its permission. A remembered site includes all ports on the same scheme and hostname. Temporary tab choices last until the browser closes.</p>
+<h2>Privacy</h2><p>No accounts, analytics, advertising, network requests, or remote code. Settings and chosen site names are saved locally. Page contents, pointer paths, and what you type are never stored by the extension. Diagnostic counts stay in memory until the page reloads.</p>
+<p>On enabled pages, OpenSteady reads control geometry and short labels to decide whether assistance is appropriate. Trace recording is available only in the separate local lab, with explicit start and export buttons.</p>
+<h2>Where assistance stops</h2><p>Top-level http and https webpages only. Browser tabs, the address bar, PDFs in the browser viewer, desktop apps, iframes, closed shadow roots, touch, and drag assistance are outside this release.</p>
+<p>Forms, payments, destructive controls, text editing, file pickers, and unlabeled controls receive ordinary clicks. Risk detection is conservative and imperfect; this is not a guarantee against accidental actions. Some sites require trusted native input or react before the click, so redirected clicks may not work there. Turn assistance off for those sites.</p>
+<p>This is an experimental accessibility tool. Benefit for people with tremor has not been established.</p>
+<button id="clear">Clear settings and revoke remembered site access</button>
+</main><script src="options.js"></script></body></html>

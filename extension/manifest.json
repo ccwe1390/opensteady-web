@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "OpenSteady Web",
+  "version": "0.1.0",
+  "minimum_chrome_version": "120",
+  "description": "Optional assistance for near misses, small click slips, and repeated mouse clicks inside webpages.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "optional_host_permissions": ["http://*/*", "https://*/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "ui/popup.html", "default_title": "OpenSteady Web" },
+  "options_page": "ui/options.html",
+  "icons": { "16": "icons/icon16.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "content_security_policy": { "extension_pages": "script-src 'self'; object-src 'none'" }
+}

@@ -1,0 +1,15 @@
+{
+  "protocolVersion": 1,
+  "status": "development-synthetic-only",
+  "frozenDate": "2026-10-02",
+  "modes": ["off", "nearest", "stable", "adaptive"],
+  "seeds": [20261002, 20261003, 20261004],
+  "trialsPerSeed": 600,
+  "rmsPx": [0, 4, 8, 16],
+  "selectorOptions": { "radius": 24, "tau": 0.075, "sigma": 6, "acquireSeconds": 0.06, "switchSeconds": 0.08, "ratio": 1.6, "minimumScore": 0.06 },
+  "primaryMetric": "policy wrong-target rate",
+  "secondaryMetrics": ["policy correct rate", "policy miss rate", "selector-only outcome", "late selection changes", "callback time"],
+  "successThreshold": null,
+  "humanProtocol": "Separate preregistration required before examining held-out participant data.",
+  "limits": ["Synthetic motions are not participant data.", "Geometry replay omits DOM, trusted events, user activation, and site compatibility.", "Selector-only results do not predict shipped click behavior.", "Development seeds are already visible and cannot become a confirmatory test set."]
+}

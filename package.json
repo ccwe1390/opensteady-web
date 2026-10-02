@@ -1,0 +1,16 @@
+{
+  "name": "opensteady-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Opt-in mouse click assistance and reproducible local evaluation",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test test/*.test.cjs",
+    "test:browser": "node test/browser.cjs",
+    "benchmark": "node benchmark/run.cjs",
+    "check": "node test/check.cjs",
+    "pack": "python3 tools/package.py"
+  },
+  "devDependencies": { "playwright": "1.62.1" }
+}
