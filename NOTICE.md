@@ -18,9 +18,10 @@ OpenSteady Web is Carol Chen's project. She owns it and decides what ships. See 
 - The wording changes in `lab/index.html` and `lab/lab.js`.
 - Everything in `probes/` and `results/` for this version, and the 0.1.4 revisions to the documents.
 
-**Version 0.1.5.** The changes in 0.1.5 were written by Claude in a Claude Code session at Carol's request on 2026-10-21. Carol asked for the project to be brought up to the level of tooling and documentation of an earlier hackathon project, and for it to be published to her GitHub repository. No independent review round was run for 0.1.5. The 0.1.5 changes are:
+**Version 0.1.5.** The changes in 0.1.5 were written by Claude in a Claude Code session at Carol's request on 2026-10-21. Carol asked for the project to be brought up to the level of tooling and documentation of an earlier hackathon project, and for it to be published to her GitHub repository. No independent review round was run for 0.1.5. Claude audited its own work (`docs/audits/`) and fixed every finding at Carol's request. The 0.1.5 changes are:
 
 - `extension/ui/i18n.js` and `extension/_locales/en/messages.json` (new), and the rewritten `extension/ui/popup.html`, `popup.js`, `options.html`, `options.js` and `styles.css`.
+- The `ACTION` label list in `extension/targets.js`, the two target faults in `tools/mutation_check.cjs`, and the shortcut failure badge.
 - The keyboard shortcuts (`commands` in `extension/manifest.json`, and `saveSettings`, `setTab`, `tabIsOn` and `runCommand` in `extension/background.js`), the `outline` setting in `extension/core/settings.js`, and the outline styles in `extension/content.js`.
 - `test/i18n.test.cjs` (new), and the new tests in `test/background.test.cjs`, `test/content.test.cjs`, `test/settings.test.cjs` and `test/browser.cjs`. The fix in `test/check.cjs` and the `CHROME_EXECUTABLE` option in `probes/*.cjs`.
 - `tools/bump_version.py` and `tools/contrast.py` (new).

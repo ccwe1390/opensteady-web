@@ -20,7 +20,7 @@ test('placeholders are defined, numbered in order, and substitute',()=>{
     const named=keysIn(entry.message,/\$([A-Za-z0-9_]+)\$/g).map(n=>n.toLowerCase());
     assert.deepEqual(named.sort(),Object.keys(entry.placeholders||{}).sort(),key);
   }
-  assert.equal(getMessage('statsCounts',['3','1']),'3 corrections · 1 repeat clicks blocked');
+  assert.equal(getMessage('statsCounts',['3','1']),'Corrections: 3 · Repeat clicks blocked: 1');
   assert.equal(getMessage('statusOn',['https://example.com']),'On · https://example.com');
 });
 test('page fallback text matches the catalog, so a missing chrome.i18n changes nothing',()=>{

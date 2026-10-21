@@ -18,10 +18,10 @@ async function refresh() {
   $('remember').textContent = state.remembered ? t('btnForget', [], 'Turn off & forget this site') : t('btnRemember', [], 'Always enable on this site');
   $('remember').disabled = !settings.enabled;
   const c = state.status?.counters;
-  $('stats').textContent = c ? t('statsCounts', [c.redirects, c.guarded], `${c.redirects} corrections · ${c.guarded} repeat clicks blocked`) + '\n' +
-    t('statsDwell', [c.dwellClicks || 0, c.errors], `${c.dwellClicks || 0} hold to click activations · ${c.errors} internal errors on this page`) : '';
+  $('stats').textContent = c ? t('statsCounts', [c.redirects, c.guarded], `Corrections: ${c.redirects} · Repeat clicks blocked: ${c.guarded}`) + '\n' +
+    t('statsDwell', [c.dwellClicks || 0, c.errors], `Hold to click activations: ${c.dwellClicks || 0} · Internal errors on this page: ${c.errors}`) : '';
   if (c?.preventedLinkDrags) $('stats').textContent += '\n' + t('statsDrags', [c.preventedLinkDrags, c.preservedLinkClicks || 0, c.rejectedLinkClicks || 0],
-    `${c.preventedLinkDrags} quick drags cancelled · ${c.preservedLinkClicks || 0} ended as the browser's own click · ${c.rejectedLinkClicks || 0} clicks stopped because the press went too far, lasted too long, or did not reach the pressed control`);
+    `Quick drags cancelled: ${c.preventedLinkDrags} · Ended as the browser's own click: ${c.preservedLinkClicks || 0} · Clicks stopped because the press went too far, lasted too long, or did not reach the pressed control: ${c.rejectedLinkClicks || 0}`);
   if (state.status?.index.capped) $('stats').textContent += '\n' + t('statsCapped', [], 'Page is too complex; target assistance is paused.');
 }
 async function showShortcut() {

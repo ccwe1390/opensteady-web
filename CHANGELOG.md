@@ -2,19 +2,21 @@
 
 ## 0.1.5 (2026-10-21)
 
-No change to which control receives a click. Selection, the press limit, the quick drag guard, the repeat guard and hold to click work exactly as in 0.1.4. What changed is how you control the extension and how it looks, plus the project's tooling. Measurements are in `results/` and `docs/VALIDATION.md`. They use a scripted hand on Linux in Chromium, not people and not a Mac.
+One change to which controls can be corrected: more consequential actions are now left alone (below). Selection, the press limit, the quick drag guard, the repeat guard and hold to click work exactly as in 0.1.4. The rest of this version is about how you control the extension and how it looks, plus the project's tooling. Measurements are in `results/` and `docs/VALIDATION.md`. They use a scripted hand on Linux in Chromium, not people and not a Mac.
 
+- **More actions are left native.** Buttons and links whose visible label names a consequential action are no longer corrected or activated by hold to click: delete or remove (any form, such as "Deleting"), deactivate, terminate, close account, unfollow, unfriend, block, leave, report, trash, publish, post, repost, book, reserve, bid, subscribe, and add to cart, bag or basket. These words are checked against the label text only, not the link address, so a link to `/post/123` is still eligible. The existing list (delete, pay, submit and others, also checked against addresses) is unchanged. Found in the 0.1.5 audit (`docs/audits/2026-10-21_audit-1.md`, A1-1). Risk matching is still imperfect and is not a security boundary.
 - **Keyboard shortcuts.** Alt+Shift+S (Control+Shift+S on a Mac) turns assistance on or off on the current tab, like the popup's enable button. It also resumes a page paused with Escape. A second shortcut, **Pause or resume assistance everywhere**, has no key until you set one at `chrome://extensions/shortcuts`. Pressing a shortcut grants the same temporary access as opening the popup. No permission was added.
 - **Outline style.** A new setting under **Settings & privacy**: standard (thin green, as before), bold (thick green), or high contrast (black on a yellow halo, visible on light and dark pages). It changes only how the outline looks.
 - **Dark mode and high contrast.** The popup and settings page follow the system's dark mode, keep borders and focus rings in Windows High Contrast (forced colors), and respect reduced motion. Every text and control color pair meets WCAG contrast minimums (`python3 tools/contrast.py`).
 - **All text in one catalog.** Every string in the popup, the settings page, the manifest and user-facing errors is in `extension/_locales/en/messages.json`. The settings page reads its version from the manifest. The text is unchanged apart from the new controls. No other language is included.
-- **Popup** shows the tab shortcut, or how to set one.
+- **Popup** shows the tab shortcut, or how to set one. A shortcut that cannot act (a browser page, a page Chrome protects, or paused everywhere) puts a red `!` on that tab's icon instead of doing nothing silently. The counters read "Corrections: 1" instead of "1 corrections".
+- **Settings page.** Long help folds behind "How this works", **Save** stays on screen while you scroll, and every control is at least 44 px tall (`docs/audits/2026-10-21_accessibility-audit.md`).
 - **Fixes in development tools.** `npm run check` no longer fails after `npm install`: it had been checking HTML files inside `node_modules`. The probes now honor `CHROME_EXECUTABLE`, as the browser tests already did.
 - **Tests.** 119 unit tests (11 new: shortcuts, outline setting, message catalog) and 44 installed extension checks (3 new: shortcuts registered, settings page, popup outside a webpage). The 61 faults in `tools/mutation_check.cjs` are all still caught.
 - **Evidence.** 0.1.4's results moved to `results/0.1.4/`. `results/` was regenerated for this build.
 - **Project tooling.** `CLAUDE.md`, `.claude/` (slash commands, review agents, hooks, project memory), GitHub Actions for checks and releases, issue and pull request templates, `CONTRIBUTING.md`, `SECURITY.md`, `HANDOFF.md`, `docs/CONTRACTS.md`, audits in `docs/audits/`, `tools/bump_version.py` and `tools/contrast.py`.
 
-What a steady hand will notice, compared with 0.1.4: nothing in clicking. The settings page has two new sections, and the popup has one new line.
+What a steady hand will notice, compared with 0.1.4: near misses and slips on controls labelled with the actions above are no longer corrected. The settings page has two new sections, and the popup has one new line.
 
 ## 0.1.4 (2026-10-03)
 

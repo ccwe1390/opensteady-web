@@ -4,4 +4,8 @@
 /* Windows High Contrast and other forced color modes: keep borders and focus rings visible. */
 @media (forced-colors:active){button,select,.card,.status,kbd{border:1px solid CanvasText}button.primary{border-width:2px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid Highlight}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-
+/* Long help folds away; Save stays reachable while scrolling a long settings page. */
+details.help{margin:4px 0 12px}details.help summary{cursor:pointer;padding:10px 0;min-height:44px;color:#076b56}details.help summary:focus-visible{outline:3px solid #1463ac;outline-offset:3px}#save{position:sticky;bottom:12px;z-index:1}
+@media (prefers-color-scheme:dark){details.help summary{color:#6fd6b8}}
+/* Pointer targets at least 44 px tall for people with tremor (measured in docs/audits/2026-10-21_accessibility-audit.md). */
+label.check{min-height:44px;padding:10px 0;margin:4px 0;cursor:pointer}select{min-height:44px}.footer a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}

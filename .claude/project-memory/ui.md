@@ -5,4 +5,4 @@
 - All text from _locales/en/messages.json; HTML keeps English fallback (checked by test/i18n.test.cjs).
 - Dark mode (prefers-color-scheme), forced-colors borders and focus, reduced motion. Contrast pairs in tools/contrast.py.
 - Outline styles: standard (2 px green), bold (4 px green), contrast (4 px black, yellow halo). Appearance only.
-- Buttons are full width, >= 48 px tall; focus ring 3 px.
+- Every pointer target >= 44 px tall (measured 2026-10-21); checkbox rows are 45 px labels; focus ring 3 px; long help in <details>; Save is sticky.

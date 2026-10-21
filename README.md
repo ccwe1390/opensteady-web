@@ -24,9 +24,10 @@ Keep Terminal open while using the lab. Press Control+C to stop the local server
 
 ## What changed in 0.1.5
 
-Clicking is unchanged from 0.1.4. This version adds controls and appearance options, and the project tooling to keep developing it. See [CHANGELOG.md](CHANGELOG.md).
+Clicking is unchanged from 0.1.4, except that more consequential actions are left alone. This version adds controls and appearance options, and the project tooling to keep developing it. See [CHANGELOG.md](CHANGELOG.md).
 
 - **Keyboard shortcuts.** **Alt+Shift+S** (Control+Shift+S on a Mac) turns assistance on or off on the current tab and resumes a page paused with Escape. **Pause or resume assistance everywhere** has no default key. Set or change both at `chrome://extensions/shortcuts`. No new permission.
+- **More actions left native.** Labels such as close account, deactivate, publish, post, block, unfollow, leave, report, book and add to cart are now excluded, as delete and pay already were. Found by this version's audit.
 - **Outline style.** Standard, bold, or high contrast (black on a yellow halo), under **Settings & privacy**. Appearance only.
 - **Dark mode, forced colors, reduced motion** in the popup and settings page.
 - **One message catalog** (`extension/_locales/en/messages.json`) for every user-visible string. English only.
@@ -53,7 +54,7 @@ Version 0.1.3 passed its tests but, when the installed extension was driven with
 - **Repeat guard.** A second nearby mouse activation of the same target within 300 ms is suppressed. It is on by default and can be switched off. Keyboard activation is unchanged.
 - **Optional hold to click.** Choose **Turn on hold to click** in the toolbar. Keep aiming at a safe outlined target until its progress bar fills (0.9 seconds by default, adjustable from 0.5 to 2 seconds). It activates once without pressing the mouse. Move 32 pixels away for a quarter second before another activation. This is off initially because hovering will activate eligible controls when it is on. Manual presses, typing, scrolling, the pointer leaving the page, holding Option, and losing focus cancel the countdown. An automatic click is untrusted and may be rejected by a site.
 - **What cancels a correction.** A modifier key, a press longer than 1.2 seconds, wandering past the allowed distance, a target that moves, disappears or becomes covered, pointer capture, scrolling, a drag that really starts (one that neither the guard nor the page cancelled), and losing focus. For a steady hand (measured shake under 2 px, or not measured), a press that lands on selected plain text or that selects text on its way.
-- **Exclusions.** Forms, file pickers, text editing, risky labels such as delete or pay, unlabeled controls, custom elements, and unsupported interaction types are left alone. Risk matching is imperfect and is not a security boundary.
+- **Exclusions.** Forms, file pickers, text editing, risky labels such as delete or pay (and, from 0.1.5, labels naming actions such as close account, publish, post, block, unfollow, leave, report, book or add to cart), unlabeled controls, custom elements, and unsupported interaction types are left alone. Risk matching is imperfect and is not a security boundary.
 - **Events.** Correction happens at the final click. The extension does not cancel pointerdown or pointerup, manufacture those events, or move the operating system cursor.
 
 The default radius is 24 px (internally bounded to 8 to 32 px), but the probability and confidence gates usually allow a smaller effective distance. This maximum is not a promise that every miss within 24 px will be corrected.

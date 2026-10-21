@@ -19,3 +19,12 @@ test('opaque custom elements and exposed shadow hosts keep descendants native',(
   assert.equal(D.eligible(new Element('button',custom)),false);
   const host=new Element();host.shadowRoot={};assert.equal(D.sensitive(new Element('span',host)),true);
 });
+test('consequential actions are excluded by their visible label, not by their address',()=>{
+  const control=(label,tag='button',href=null)=>{const el=new Element(tag);el.textContent=label;if(href)el.attrs.href=href;return el;};
+  for(const label of ['Close account','Close my account','Deactivate','Deleting account','Publish','Post','Unfollow','Leave group','Block user','Report','Move to trash','Book now','Add to cart','Subscribe','Removing item'])
+    assert.equal(D.eligible(control(label)),false,label);
+  for(const label of ['Open panel','Next page','Read more','Settings','Posts','Blogpost','Facebook'])assert.equal(D.eligible(control(label)),true,label);
+  assert.equal(D.eligible(control('Read the story','a','/post/123')),true);assert.equal(D.eligible(control('Quarterly results','a','/reports/q3')),true);
+  assert.equal(D.eligible(control('Read the story','a','/delete/123')),false);
+  const labelled=control('');labelled.attrs['aria-label']='Close account';assert.equal(D.eligible(labelled),false);
+});

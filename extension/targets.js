@@ -7,6 +7,12 @@
   function blocked(el) {
     return !el || !el.isConnected || el.closest('[inert],[hidden],[aria-hidden="true"],[aria-disabled="true"]') || el.matches(':disabled');
   }
+  // Consequential actions named only by visible words (0.1.5). Checked against the label text, not the link address,
+  // so ordinary addresses such as /post/123 or /reports/ stay eligible.
+  const ACTION = /\b(delet\w*|remov\w*|eras\w*|destroy\w*|deactivat\w*|terminat\w*|unfollow\w*|unfriend\w*|block\w*|leave|report\w*|trash\w*|publish\w*|post|repost|book|reserve|bid|subscribe\w*|add\s+to\s+(?:cart|bag|basket)|close\s+(?:my\s+|your\s+|the\s+)?account)\b/i;
+  function actionLabel(el) {
+    return [el.getAttribute('aria-label'), el.getAttribute('title'), el.textContent?.slice(0, 240)].filter(Boolean).join(' ').slice(0, 600);
+  }
   function riskLabel(el) {
     const label = [el.getAttribute('aria-label'), el.getAttribute('title'), el.textContent?.slice(0, 240), el.getAttribute('href')].filter(Boolean).join(' ').slice(0, 600);
     return label;
@@ -23,7 +29,7 @@
     }
     if (!['A', 'BUTTON', 'INPUT', 'SUMMARY'].includes(tag) && !['button', 'link'].includes(el.getAttribute('role'))) return false;
     const label = riskLabel(el);
-    if (RISK.test(label)) return false;
+    if (RISK.test(label) || ACTION.test(actionLabel(el))) return false;
     if (tag !== 'INPUT' && !label.trim()) return false;
     return true;
   }
@@ -129,5 +135,5 @@
       return { el, rect: r };
     }
   }
-  root.OpenSteadyDOM = { TargetIndex, eligible, sensitive, actualControl, sameRect, RISK };
+  root.OpenSteadyDOM = { TargetIndex, eligible, sensitive, actualControl, sameRect, RISK, ACTION };
 })(globalThis);

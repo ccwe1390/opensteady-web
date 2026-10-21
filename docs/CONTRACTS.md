@@ -48,7 +48,7 @@ The content script also listens to `chrome.storage.onChanged` and asks for `cont
 | `toggle-tab` | Alt+Shift+S (Control+Shift+S on a Mac) | Same as the popup's enable / turn off button for the active tab. Pressing it grants `activeTab`. Does nothing on non-http(s) pages or while paused everywhere. A page paused with Escape is resumed. |
 | `pause-everywhere` | none | Flips the global `enabled` setting. Every other setting is kept. |
 
-Failures (for example a page Chrome does not allow scripts on) are swallowed. The badge does not change. Tests: `test/background.test.cjs` "toggle-tab shortcut ...", "pause-everywhere shortcut ...". The browser check "keyboard shortcuts are registered ..." confirms the descriptions and default key in Chromium.
+When `toggle-tab` cannot act (a page that is not http or https, a page Chrome does not allow scripts on, or paused everywhere), it sets the badge to a red `!` on that tab. The next page load or toggle replaces it. Tests: `test/background.test.cjs` "toggle-tab shortcut ...", "pause-everywhere shortcut ...". The browser check "keyboard shortcuts are registered ..." confirms the descriptions and default key in Chromium.
 
 ## Storage
 
