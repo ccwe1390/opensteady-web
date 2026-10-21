@@ -1,6 +1,6 @@
 # Architecture and design decisions
 
-This describes version 0.1.5. The click rules are unchanged from 0.1.4. Version 0.1.5 changed only the controls and appearance, described at the end.
+This describes version 0.1.5. The click rules are unchanged from 0.1.4 apart from a longer list of excluded action labels (see Target index). The other 0.1.5 changes are controls and appearance, described at the end.
 
 ## Boundaries
 
@@ -12,7 +12,7 @@ The local lab uses the same pure selection and policy modules but is not the pro
 
 Stable element IDs live in a WeakMap. Rectangles and a 64 px spatial grid are rebuilt after DOM changes, scroll, resize, and periodic layout checks while the pointer is active. A pointer move queries the grid. It never rescans the full DOM. Bounding-box gaps of wrapped controls are excluded. Giant rectangles are stored separately to bound cell replication. Above 6,000 discovered controls the index abstains entirely.
 
-Candidates are screened locally for semantic eligibility and short risk labels. Live geometry, exposure through `elementFromPoint`, connectedness, enabled state, opacity, and ancestor opacity are checked before outlining and immediately before delivery. This reduces errors from stale or covered targets. It does not make a hostile page safe. Geometry reading and outline updates can still force layout on some pages, which browser stress tests must measure.
+Candidates are screened locally for semantic eligibility and short risk labels. Two lists are used. `RISK` (delete, pay, submit and similar, in several languages) is matched against the label text and the link address. `ACTION` (0.1.5: inflected delete and remove, deactivate, close account, unfollow, block, leave, report, publish, post, book, add to cart and similar) is matched against the visible label only, so ordinary addresses such as `/post/123` stay eligible. Live geometry, exposure through `elementFromPoint`, connectedness, enabled state, opacity, and ancestor opacity are checked before outlining and immediately before delivery. This reduces errors from stale or covered targets. It does not make a hostile page safe. Geometry reading and outline updates can still force layout on some pages, which browser stress tests must measure.
 
 ## Selector
 
@@ -133,7 +133,7 @@ The controller uses `performance.now()/1000` for selection, gesture handling, th
 
 ## Controls and appearance (new in 0.1.5)
 
-**Keyboard shortcuts.** The manifest declares two `commands`. `toggle-tab` (Alt+Shift+S, or Control+Shift+S on a Mac) runs the same code as the popup's enable / turn off button (`setTab` in `background.js`). The shortcut press grants `activeTab`, so injection needs no host permission. It does nothing on pages that are not http or https, or while paused everywhere. A page paused with Escape reports itself off, so the shortcut resumes it. `pause-everywhere` flips the global switch and has no default key. Both run through the same ordered queue as popup messages. See `docs/CONTRACTS.md`.
+**Keyboard shortcuts.** The manifest declares two `commands`. `toggle-tab` (Alt+Shift+S, or Control+Shift+S on a Mac) runs the same code as the popup's enable / turn off button (`setTab` in `background.js`). The shortcut press grants `activeTab`, so injection needs no host permission. It does nothing on pages that are not http or https, or while paused everywhere. A page paused with Escape reports itself off, so the shortcut resumes it. `pause-everywhere` flips the global switch and has no default key. Both run through the same ordered queue as popup messages. When the tab shortcut cannot act, it sets a red `!` badge on that tab. See `docs/CONTRACTS.md`.
 
 **Outline style.** The `outline` setting picks one of three styles: standard (2 px green), bold (4 px green), or contrast (4 px black with a 3 px yellow halo). `configure` applies it to the closed shadow root box. It never reaches selection or policy code.
 

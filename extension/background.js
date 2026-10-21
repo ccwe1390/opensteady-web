@@ -80,10 +80,18 @@ async function runCommand(command, tab) {
   if (command === 'pause-everywhere') { const s = await settings(); await saveSettings({ enabled: !s.enabled }); return; }
   if (command !== 'toggle-tab') return;
   if (!tab?.id) [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  const site = tab && siteKey(tab.url);
-  if (!site || !(await settings()).enabled) return;
+  if (!tab?.id) return;
+  const site = siteKey(tab.url);
   // A page paused with Escape reports enabled false, so the shortcut resumes it, like the popup's enable button.
-  await setTab(tab, site, !await tabIsOn(tab));
+  try {
+    if (!site || !(await settings()).enabled) throw new Error('unavailable');
+    await setTab(tab, site, !await tabIsOn(tab));
+  } catch {
+    // Nothing could change here (browser page, protected page, or paused everywhere). Say so on this tab's icon;
+    // the popup explains why. The next page load or toggle replaces the mark.
+    await chrome.action.setBadgeText({ tabId: tab.id, text: '!' }).catch(() => {});
+    await chrome.action.setBadgeBackgroundColor({ tabId: tab.id, color: '#a0282b' }).catch(() => {});
+  }
 }
 async function handle(message, sender) {
   if (sender.id !== chrome.runtime.id) throw new Error('Unsupported sender.');

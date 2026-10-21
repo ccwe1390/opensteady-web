@@ -9,4 +9,6 @@ All scripted hand, Linux, Chromium. Not people.
 - Unit 108/108, browser 41/41, controller-only 41/41, mutation 61/61.
 
 ## 0.1.5 (2026-10-21) - results/
-- See results/README.md for this version's measurements; the click path (core/*, targets.js, content.js gesture code) is unchanged from 0.1.4 apart from outline styling.
+- Same Chromium 141.0.7390.37 (cloud container). real_input identical to 0.1.4 in every row; per-trial, benchmark accuracy, policy-variants, press-delay, meter-check identical.
+- Unit 121/121, browser 44/44, controller-only 41/41, mutation 63/63.
+- review-links guard-off 1/32 vs 0/32 and hold-to-click 1.05-1.13 s: timing noise.

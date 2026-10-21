@@ -1,6 +1,2 @@
-
-> opensteady-web@0.1.4 test:review-links
-> node test/review-links.cjs
-
-{"dragGuard":false,"n":32,"correct":0,"wrong":0,"miss":32,"pressAndReleaseInside":28,"correctInside":0}
+{"dragGuard":false,"n":32,"correct":1,"wrong":0,"miss":31,"pressAndReleaseInside":28,"correctInside":0}
 {"dragGuard":true,"n":32,"correct":30,"wrong":0,"miss":2,"pressAndReleaseInside":28,"correctInside":28}

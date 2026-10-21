@@ -2,7 +2,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs'),path=require('node:path');
 const Settings=require('../extension/core/settings.js');
 function mock(){
-  const local={},session={},origins=new Set(),registered=[],injected=[],configs=[];
+  const local={},session={},origins=new Set(),registered=[],injected=[],configs=[],badges=[];
   const event=()=>({callbacks:[],addListener(fn){this.callbacks.push(fn);}});
   const store=data=>({async get(key){return key===null?{...data}:{[key]:data[key]};},async set(value){Object.assign(data,value);},async remove(key){delete data[key];},async clear(){for(const k of Object.keys(data))delete data[k];}});
   const tab={id:1,url:'https://example.com/path'};
@@ -10,12 +10,12 @@ function mock(){
     storage:{local:store(local),session:store(session)},permissions:{async getAll(){return{origins:[...origins],permissions:['activeTab','scripting','storage']};},async contains({origins:wanted}){return wanted.every(x=>origins.has(x));},async remove({origins:wanted}){wanted.forEach(x=>origins.delete(x));return true;},onRemoved:event()},
     scripting:{async executeScript(args){injected.push(args);},async getRegisteredContentScripts(){return registered;},async unregisterContentScripts(){registered.length=0;},async registerContentScripts(values){registered.push(...values);}},
     tabs:{async query(){return[tab];},async get(id){if(id!==1)throw Error('Missing tab');return tab;},async sendMessage(id,m){configs.push(m);return null;},onRemoved:event(),onUpdated:event()},
-    action:{async setBadgeText(){},async setBadgeBackgroundColor(){}},commands:{onCommand:event()}};
+    action:{async setBadgeText(v){badges.push(v);},async setBadgeBackgroundColor(){}},commands:{onCommand:event()}};
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../extension/background.js'),'utf8'),{chrome,OpenSteadySettings:Settings,importScripts(){},URL,console,Promise});
   const sender={id:'test',url:'chrome-extension://test/ui/popup.html'};
   const send=(m,s=sender)=>new Promise(resolve=>chrome.runtime.onMessage.callbacks[0](m,s,resolve));
   const command=(name,t=tab)=>new Promise(resolve=>{chrome.commands.onCommand.callbacks[0](name,t);setTimeout(resolve,20);});
-  return{send,command,local,session,origins,registered,injected,configs,tab,chrome};
+  return{send,command,badges,local,session,origins,registered,injected,configs,tab,chrome};
 }
 test('default has no access; current-tab activation is temporary and top-level',async()=>{
   const h=mock();let r=await h.send({type:'tab-status',tabId:1});assert.equal(r.config.enabled,false);
@@ -84,10 +84,16 @@ test('toggle-tab shortcut enables, then disables, the current tab only through a
   assert.equal(h.injected.length,1);assert.equal(h.registered.length,0);assert.equal(h.origins.size,0);
   await h.command('toggle-tab');assert.equal((await h.send({type:'tab-status',tabId:1})).config.enabled,false);
 });
-test('toggle-tab shortcut does nothing on browser pages or while paused everywhere',async()=>{
+test('toggle-tab shortcut does nothing on browser pages or while paused everywhere, and marks the icon',async()=>{
   const h=mock();await h.command('toggle-tab',{id:1,url:'chrome://settings'});assert.equal(h.injected.length,0);
-  await h.send({type:'save-settings',settings:{enabled:false}});await h.command('toggle-tab');
+  assert.deepEqual({...h.badges.at(-1)},{tabId:1,text:'!'});
+  await h.send({type:'save-settings',settings:{enabled:false}});h.badges.length=0;await h.command('toggle-tab');
   assert.equal(h.injected.length,0);assert.equal((await h.send({type:'tab-status',tabId:1})).config.enabled,false);
+  assert.deepEqual({...h.badges.at(-1)},{tabId:1,text:'!'});
+});
+test('toggle-tab shortcut on a page that refuses scripts marks the icon instead of failing silently',async()=>{
+  const h=mock();h.chrome.scripting.executeScript=async()=>{throw Error('Cannot access contents of the page');};
+  await h.command('toggle-tab');assert.deepEqual({...h.badges.at(-1)},{tabId:1,text:'!'});assert.equal(h.session['tab:1'],undefined);
 });
 test('pause-everywhere shortcut flips the global switch and keeps other settings',async()=>{
   const h=mock();await h.send({type:'save-settings',settings:{dwellEnabled:true,outline:'bold'}});

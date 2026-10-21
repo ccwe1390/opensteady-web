@@ -1,16 +1,18 @@
 #!/usr/bin/env node
 // Do the unit tests notice when a rule is broken? Each entry below breaks one rule by changing a single
 // piece of the extension's code. The unit tests are run against every broken copy. A fault that no test
-// notices is reported as SURVIVED. Written by Claude (AI assistant), 2026-10-02, for OpenSteady Web 0.1.4.
+// notices is reported as SURVIVED. Written by Claude (AI assistant), 2026-10-02, for OpenSteady Web 0.1.4. Two target faults added for 0.1.5.
 // Usage, from the project folder: node tools/mutation_check.cjs
 'use strict';
 const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),{spawnSync}=require('node:child_process');
 const root=path.resolve(__dirname,'..');
-const C='extension/content.js',P='extension/core/policy.js',J='extension/core/jitter.js',L='extension/core/link-drag.js';
+const T='extension/targets.js',C='extension/content.js',P='extension/core/policy.js',J='extension/core/jitter.js',L='extension/core/link-drag.js';
 // A control: this changes only a comment, so no test can notice it. It must be reported as SURVIVED.
 // If it is reported as caught, this script is misreading the test output, and every other verdict is void.
 const control=['control: a comment changed, nothing else',C,'// A drag of selected text starts on a text node, so look at its parent element.','// (comment changed by the fault check)'];
 const faults=[
+ ['targets: consequential action labels are no longer excluded',T,'if (RISK.test(label) || ACTION.test(actionLabel(el))) return false;','if (RISK.test(label)) return false;'],
+ ['targets: action words are also matched in link addresses',T,"el.getAttribute('title'), el.textContent?.slice(0, 240)].filter(Boolean)","el.getAttribute('title'), el.textContent?.slice(0, 240), el.getAttribute('href')].filter(Boolean)"],
  ['policy: a native click on another control no longer wins',P,'id !== null && free && e.canRedirect','id !== null && e.canRedirect'],
  ['policy: a press past its allowed distance can be redirected',P,'!nativeCorrect && !p.sameOnly &&','!nativeCorrect &&'],
  ['policy: the wide limit also applies to long presses',P,'age <= this.quickSeconds ? p.slipLimit : this.slipPx','p.slipLimit'],

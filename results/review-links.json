@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T08:03:40.778Z",
+  "generatedAt": "2026-10-21T21:28:53.824Z",
   "browser": "141.0.7390.37",
   "mode": "extension-localhost-fixture",
   "seed": 77,
@@ -8,9 +8,9 @@
     {
       "dragGuard": false,
       "n": 32,
-      "correct": 0,
+      "correct": 1,
       "wrong": 0,
-      "miss": 32,
+      "miss": 31,
       "pressAndReleaseInside": 28,
       "correctInside": 0,
       "outcomes": [
@@ -112,9 +112,14 @@
         },
         {
           "intended": 12,
-          "outcome": "miss",
+          "outcome": "correct",
           "pressAndReleaseInside": false,
-          "clicks": []
+          "clicks": [
+            {
+              "i": 12,
+              "trusted": false
+            }
+          ]
         },
         {
           "intended": 13,

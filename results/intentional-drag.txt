@@ -1,0 +1,3 @@
+guard off: drag a link 370 px at once                      events: ["dragstart","dragend"]  clicks on the link: 0
+guard on:  drag a link 370 px at once                      events: ["dragstart(cancelled)"]  clicks on the link: 0
+guard on:  press, wait 0.7 s, then drag a link 370 px      events: ["dragstart","dragend"]  clicks on the link: 0

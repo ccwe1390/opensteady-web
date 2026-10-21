@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T08:02:03.784Z",
+  "generatedAt": "2026-10-21T21:27:16.965Z",
   "browser": "141.0.7390.37",
   "mode": "isolated-controller-only",
   "extensionId": null,
@@ -175,12 +175,12 @@
       "jitterPx": 4,
       "repetitions": 6,
       "activationMs": [
+        1095,
         1096,
-        1110,
-        1096,
-        1059,
-        1099,
-        1100
+        1097,
+        1081,
+        1065,
+        1061
       ]
     }
   },
