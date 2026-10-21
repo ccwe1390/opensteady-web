@@ -2,7 +2,7 @@
 
 An experimental browser extension that runs entirely on your own computer and makes no network requests. It is meant to help with near misses, slips during a press, quick accidental drags, repeated mouse clicks, and optional hold to click without a button press. It includes a pure target selector, a conservative gesture policy, a local pointing lab, a reproducible replay benchmark, measurement probes that drive the installed extension, and evaluation materials.
 
-Version **0.1.4**. Desktop Chrome, Manifest V3, Chrome 120 or newer. Edge uses the same extension system but has not been tested. No build step or runtime dependencies. This is a browser prototype, not a system-wide cursor filter or a medical treatment. Real-world benefit has not been established. Every measurement of this build comes from a scripted hand with synthetic tremor, on Linux, not from people.
+Version **0.1.5**. Desktop Chrome, Manifest V3, Chrome 120 or newer. Edge uses the same extension system but has not been tested. No build step or runtime dependencies. This is a browser prototype, not a system-wide cursor filter or a medical treatment. Real-world benefit has not been established. Every measurement of this build comes from a scripted hand with synthetic tremor, on Linux, not from people.
 
 ## Start on your Mac
 
@@ -20,7 +20,17 @@ Version **0.1.4**. Desktop Chrome, Manifest V3, Chrome 120 or newer. Edge uses t
 
 Keep Terminal open while using the lab. Press Control+C to stop the local server. The extension itself needs no server to assist other webpages. Enable each tab manually or explicitly grant **Always enable on this site**. It starts with no website access.
 
-**Recovery:** press Escape to pause this page, and resume from the toolbar. Choose **Turn off on this tab**, **Turn off & forget this site**, or **Pause everywhere** as needed. A click made with Shift, Control, Command or Option held is left to the browser. Remove the extension normally to uninstall.
+**Recovery:** press Escape to pause this page, and resume from the toolbar or with **Alt+Shift+S** (Control+Shift+S on a Mac). Choose **Turn off on this tab**, **Turn off & forget this site**, or **Pause everywhere** as needed. A click made with Shift, Control, Command or Option held is left to the browser. Remove the extension normally to uninstall.
+
+## What changed in 0.1.5
+
+Clicking is unchanged from 0.1.4. This version adds controls and appearance options, and the project tooling to keep developing it. See [CHANGELOG.md](CHANGELOG.md).
+
+- **Keyboard shortcuts.** **Alt+Shift+S** (Control+Shift+S on a Mac) turns assistance on or off on the current tab and resumes a page paused with Escape. **Pause or resume assistance everywhere** has no default key. Set or change both at `chrome://extensions/shortcuts`. No new permission.
+- **Outline style.** Standard, bold, or high contrast (black on a yellow halo), under **Settings & privacy**. Appearance only.
+- **Dark mode, forced colors, reduced motion** in the popup and settings page.
+- **One message catalog** (`extension/_locales/en/messages.json`) for every user-visible string. English only.
+- **Development.** Fixed `npm run check` failing after `npm install`, and made the probes honor `CHROME_EXECUTABLE`. Added CI, release automation, audits, and Claude Code project tooling (see below).
 
 ## What changed in 0.1.4
 
@@ -76,6 +86,8 @@ node tools/mutation_check.cjs
 
 The last command checks the tests themselves: it breaks one rule of the extension at a time and confirms that the unit tests notice.
 
+Two more tools: `python3 tools/contrast.py` checks the WCAG contrast of every UI color pair, and `python3 tools/bump_version.py X.Y.Z` writes a new version everywhere it appears. GitHub Actions (`.github/workflows/checks.yml`) runs the unit tests on Node 20, 22 and 24, plus the package check, benchmark, fault check, contrast check, a reproducible-package check, and the installed extension suite, on every push and pull request. Pushing a tag `vX.Y.Z` publishes a GitHub Release with the ZIPs (`release.yml`). That is not a store submission.
+
 For tests that load the real extension into Chromium:
 
 ```sh
@@ -85,7 +97,7 @@ npm run test:browser
 npm run test:review-links
 ```
 
-Use `HEADED=1 npm run test:browser` for a visible test browser. A missing browser fails the test command instead of recording a pass. The suite loads the actual extension and uses trusted Playwright mouse events. Its temporary test manifest grants only localhost access. The shipped manifest is unchanged. Permission and lifecycle flows also have mocked service-worker tests and a manual checklist.
+Use `HEADED=1 npm run test:browser` for a visible test browser. If Playwright's own Chromium is not installed (for example in a cloud container with a preinstalled browser), point the suites and probes at another build with `CHROME_EXECUTABLE=/path/to/chrome`. A missing browser fails the test command instead of recording a pass. The suite loads the actual extension and uses trusted Playwright mouse events. Its temporary test manifest grants only localhost access. The shipped manifest is unchanged. Permission and lifecycle flows also have mocked service-worker tests and a manual checklist.
 
 See [docs/VALIDATION.md](docs/VALIDATION.md) for this build's actual results and remaining checks. A unit pass is not a claim of browser or user effectiveness.
 
@@ -136,16 +148,38 @@ The paired link replay can be reproduced with `npm run test:review-links`. It us
 | `extension/targets.js` | DOM eligibility, risk exclusions, index, live revalidation |
 | `extension/content.js` | Trusted input, outline, policy application, recovery |
 | `extension/background.js` | Opt-in injection, settings, site permissions |
-| `extension/ui/` | Toolbar popup, settings, privacy |
+| `extension/ui/` | Toolbar popup, settings, privacy; `i18n.js` fills text from the catalog |
+| `extension/_locales/en/messages.json` | Every user-visible string, and the manifest name and description |
 | `extension/manifest.json`, `extension/icons/`, `extension/LICENSE`, `extension/NOTICE.md` | Extension manifest, icons, license and notice |
 | `lab/` | Local simulation, explicit recordings, compatibility fixtures |
 | `benchmark/` | Seeded generator, JSON replay, analysis, protocol |
 | `probes/` | Measurements of the installed extension under trusted input, and checks of the shake meter |
 | `test/` | Core, mocked integration, worker, package, and installed extension tests |
 | `docs/` | Architecture, privacy, validation, review response, pilot protocol, research notes, compatibility and release checklists |
-| `results/` | Actual development measurements for this build |
-| `tools/` | Packaging script, icon generator, and the check that the tests notice broken rules |
+| `results/` | Actual development measurements for this build. Earlier builds are in `results/0.1.3/` and `results/0.1.4/` |
+| `tools/` | Packaging script, icon generator, the check that the tests notice broken rules, version bump, contrast check |
+| `docs/CONTRACTS.md`, `docs/audits/` | Messages, storage and settings between the parts; dated audits |
+| `HANDOFF.md` | Where the work stands and what to do next |
+| `CLAUDE.md`, `.claude/` | Rules, slash commands, review agents, hooks and project memory for Claude Code |
+| `.github/` | CI and release workflows, issue and pull request templates |
 | `release/` | The extension alone, zipped, as it would be uploaded to a store |
+
+## Working on it with Claude Code
+
+The repository is set up for [Claude Code](https://code.claude.com). `CLAUDE.md` holds the project's hard rules (no network, claims follow evidence, native input first). A session start hook installs the development dependency and finds a Chromium. After any edit inside `extension/`, a hook reruns the package check. Project slash commands:
+
+| Command | What it does |
+|---|---|
+| `/verify [quick]` | Every automated gate, with exact counts |
+| `/regen-results` | Archive `results/` under the old version and regenerate all evidence |
+| `/probe <name>` | Run one probe and compare it with the saved result |
+| `/claims-check` | Trace every number in the docs to `results/` or a code constant |
+| `/review` | Independent code and documents review by fresh agents, then verify and respond |
+| `/audit`, `/a11y-audit` | Write a dated audit to `docs/audits/` |
+| `/add-setting <name>` | Add a setting end to end, with tests |
+| `/release <version>` | Bump, changelog, evidence, packages, checks |
+| `/site-compat <site>` | Record a manual compatibility check |
+| `/handoff`, `/remember`, `/premortem` | Keep `HANDOFF.md`, project memory and risk notes current |
 
 ## Release
 

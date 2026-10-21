@@ -1,0 +1,34 @@
+name: Site compatibility report
+description: Record how the extension behaves on a public website
+labels: [compatibility]
+body:
+  - type: markdown
+    attributes:
+      value: Only report public pages where a wrong click does no harm. Do not test banking, health, email, or account settings pages.
+  - type: input
+    id: host
+    attributes:
+      label: Hostname (no path)
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks (tick what worked)
+      options:
+        - label: Outline appears on links and buttons
+        - label: A near miss beside a link is clicked
+        - label: A quick drag on a link becomes a click
+        - label: Forms are left alone
+        - label: Escape pauses the page
+        - label: Turning it off restores normal behavior
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+  - type: input
+    id: versions
+    attributes:
+      label: Versions (extension, Chrome, OS)
+    validations:
+      required: true

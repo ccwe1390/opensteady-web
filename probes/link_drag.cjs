@@ -6,7 +6,7 @@ const server=http.createServer((req,res)=>{const f=path.join(here,decodeURICompo
 const sleepUntil=async t=>{const d=t-performance.now();if(d>1)await new Promise(r=>setTimeout(r,d-1));while(performance.now()<t){}};
 (async()=>{
   await new Promise(r=>server.listen(0,'127.0.0.1',r));
-  const b=await chromium.launch({headless:true});const page=await b.newPage({viewport:{width:1100,height:800}});
+  const b=await chromium.launch({headless:true,...(process.env.CHROME_EXECUTABLE?{executablePath:process.env.CHROME_EXECUTABLE}:{})});const page=await b.newPage({viewport:{width:1100,height:800}});
   await page.goto('http://127.0.0.1:'+server.address().port+'/page.html');
   await page.evaluate(()=>{window.drags=0;window.addEventListener('dragstart',()=>window.drags++,true);});
   const rects=await page.evaluate(()=>[...document.querySelectorAll('.t')].map(e=>{const r=e.getBoundingClientRect();return{x:r.left,y:r.top,w:r.width,h:r.height,tag:e.tagName};}));

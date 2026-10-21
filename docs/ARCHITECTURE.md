@@ -1,6 +1,6 @@
 # Architecture and design decisions
 
-This describes version 0.1.4.
+This describes version 0.1.5. The click rules are unchanged from 0.1.4. Version 0.1.5 changed only the controls and appearance, described at the end.
 
 ## Boundaries
 
@@ -130,6 +130,14 @@ The 12 px press limit is unchanged for a steady hand. Five other things differ f
 ## One clock
 
 The controller uses `performance.now()/1000` for selection, gesture handling, the drag record, and hold to click. Historical `Event.timeStamp` values never move selection backward in time after a timer tick. The shake meter is the one exception, as described above, and it never mixes the two clocks.
+
+## Controls and appearance (new in 0.1.5)
+
+**Keyboard shortcuts.** The manifest declares two `commands`. `toggle-tab` (Alt+Shift+S, or Control+Shift+S on a Mac) runs the same code as the popup's enable / turn off button (`setTab` in `background.js`). The shortcut press grants `activeTab`, so injection needs no host permission. It does nothing on pages that are not http or https, or while paused everywhere. A page paused with Escape reports itself off, so the shortcut resumes it. `pause-everywhere` flips the global switch and has no default key. Both run through the same ordered queue as popup messages. See `docs/CONTRACTS.md`.
+
+**Outline style.** The `outline` setting picks one of three styles: standard (2 px green), bold (4 px green), or contrast (4 px black with a 3 px yellow halo). `configure` applies it to the closed shadow root box. It never reaches selection or policy code.
+
+**Pages and text.** Popup and settings text comes from `_locales/en/messages.json` through `ui/i18n.js`. That script writes text nodes only, so a message can never inject markup. It turns `[[Key]]` into `<kbd>`. The CSS follows `prefers-color-scheme`, `forced-colors` and `prefers-reduced-motion`, and uses logical properties (`text-align: start`, `padding-inline-start`), so a right-to-left language could be added without layout changes.
 
 ## Primary documentation
 

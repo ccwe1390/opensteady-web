@@ -1,0 +1,66 @@
+baseline     the unchanged code passes every test
+SURVIVED     control: a comment changed, nothing else (as it should)
+caught (2 failing)    policy: a native click on another control no longer wins
+caught (5 failing)    policy: a press past its allowed distance can be redirected
+caught (2 failing)    policy: the wide limit also applies to long presses
+caught (1 failing)    policy: a near miss may be released on any control
+caught (2 failing)    policy: a wide slip onto empty space needs no outline agreement
+caught (2 failing)    policy: a slip onto another control needs no outline agreement
+caught (5 failing)    policy: same-control recognition reaches 480 px
+caught (1 failing)    policy: the 1.2 s maximum is ignored
+caught (2 failing)    policy: a working native click is replaced by a synthetic one
+caught (1 failing)    policy: a passed-in limit is not clamped
+caught (1 failing)    jitter: the test for a travelling pointer is removed
+caught (1 failing)    jitter: the variance divides by n instead of n minus 3
+caught (3 failing)    jitter: the limit is capped at 480 px
+caught (3 failing)    jitter: the steady line for selected text moves to 5 px
+caught (1 failing)    jitter: an unknown measurement counts as not steady
+caught (3 failing)    drag record: the quick window becomes 1.2 s
+caught (4 failing)    drag record: abort forgets a cancelled drag
+caught (1 failing)    drag record: a modifier key during the press is ignored
+caught (3 failing)    drag record: keeps the last distance, not the furthest
+caught (1 failing)    drag guard: outline agreement is dropped
+caught (2 failing)    drag guard: the drag may start anywhere
+caught (2 failing)    drag guard: a drag starting on something sensitive is cancelled
+caught (1 failing)    drag guard: the target is not checked at the drag
+caught (1 failing)    drag guard: modifier keys are ignored
+caught (1 failing)    drag guard: a text node target is not resolved to its parent
+caught (2 failing)    drag guard: acts even when the page cancelled the drag later
+caught (1 failing)    drag guard: a drag that really starts does not end the press
+caught (1 failing)    drag guard: a page cancellation seen late still ends the press
+caught (1 failing)    drag guard: not moved after the page's window listeners
+caught (2 failing)    drag guard: beside the target it acts for a steady hand too
+caught (4 failing)    selected text: a steady press on it is never blocked
+caught (2 failing)    selected text: blocks a hand that is not steady as well
+caught (1 failing)    selected text: blocks a press on a link or button as well
+caught (2 failing)    selected text: a steady press that selects text is still corrected
+caught (2 failing)    selected text: the selection rule applies to a hand that is not steady
+caught (1 failing)    selected text: the selection rule applies on a control
+caught (1 failing)    selected text: a selection with no visible text counts
+caught (3 failing)    selected text: never removed after a correction
+caught (2 failing)    selected text: an older selection is removed too
+caught (1 failing)    selected text: removed before the last check of the target
+caught (1 failing)    selected text: offsets of a partial selection are ignored
+caught (1 failing)    selected text: only the character after the caret is measured
+caught (1 failing)    selected text: a caret outside text counts as covered
+caught (1 failing)    selected text: a giant text node is measured
+caught (1 failing)    selected text: no caret support means not covered
+caught (1 failing)    selected text: hold to click ignores it
+caught (1 failing)    click: the release may be as far as the whole limit
+caught (1 failing)    click: the release allowance never widens
+caught (2 failing)    click: a cancelled drag that went too far is not stopped
+caught (1 failing)    click: a cancelled drag is judged without its duration
+caught (2 failing)    click: a stray click on a containing control is let through
+caught (1 failing)    click: only a recognized control can receive a stray click
+caught (1 failing)    selected text: blank text in one node counts as text
+caught (1 failing)    drag guard: a page cancellation seen early still resets the press
+caught (1 failing)    click: keyboard clicks after a cancelled drag are stopped too
+caught (1 failing)    click: modifier clicks after a cancelled drag are stopped too
+caught (2 failing)    pointer: the drag record is not fed with movement
+caught (1 failing)    pointer: shake is sampled during a press
+caught (1 failing)    pointer: shake is sampled while paused
+caught (1 failing)    pointer: the shake history survives a scroll
+caught (1 failing)    errors: three internal errors no longer pause the page
+
+61 faults listed, 61 applied, 61 caught by the unit tests, 0 survived.
+Checked with Node v22.22.0. The control fault survived, as it should.

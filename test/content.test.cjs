@@ -469,3 +469,8 @@ test('whenever the page cancels a drag, early or late, the press carries on; a d
   assert.deepEqual(nearMiss(e=>e.preventDefault(),h=>h.controller.configure({enabled:true,dragGuard:false})).clicks,['a']);
   assert.equal(nearMiss(null,h=>h.controller.configure({enabled:true,dragGuard:false})).clicks.length,0);
 });
+test('outline style setting reaches the controller and leaves gesture handling unchanged',()=>{
+  const h=harness();h.controller.configure({enabled:true,outline:'contrast'});assert.equal(h.controller.status().config.outline,'contrast');
+  h.preview();h.gesture();assert.deepEqual(h.clicks,['a']);
+  h.controller.configure({enabled:true,outline:'bogus'});assert.equal(h.controller.status().config.outline,'standard');
+});

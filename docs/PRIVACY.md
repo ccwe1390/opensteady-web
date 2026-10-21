@@ -1,10 +1,10 @@
 # OpenSteady Web privacy statement
 
-Version 0.1.4 · October 3, 2026
+Version 0.1.5 · October 21, 2026
 
 OpenSteady Web has no account, server, analytics, advertising, remote code, or network requests.
 
-On a page you enable, it processes mouse coordinates and timing, control positions, element state, short control labels, and link addresses. Labels and link addresses help exclude actions such as deletion or payment. It does not read input values or record what you type. Key presses are checked only to pause assistance (Escape), to leave a click to the browser (modifier keys), and to stop the hold to click countdown (any key). Keystrokes are not stored.
+On a page you enable, it processes mouse coordinates and timing, control positions, element state, short control labels, and link addresses. Labels and link addresses help exclude actions such as deletion or payment. It does not read input values or record what you type. Key presses are checked only to pause assistance (Escape), to leave a click to the browser (modifier keys), and to stop the hold to click countdown (any key). Keystrokes are not stored. The keyboard shortcuts (0.1.5) are handled by Chrome itself. The extension learns only that a shortcut was pressed, not any other key.
 
 To measure how much the pointer is shaking, the extension holds the last fraction of a second of pointer positions in memory (at most 0.6 seconds). Older positions are discarded as new ones arrive, and the whole buffer is emptied when you scroll, switch away, or pause. Nothing is gathered while assistance is paused or switched off. These positions are never written to storage and never leave the page.
 

@@ -1,6 +1,6 @@
 {
   "name": "opensteady-web",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "description": "Opt-in mouse click assistance and reproducible local evaluation",
   "license": "MIT",

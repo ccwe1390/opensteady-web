@@ -1,6 +1,6 @@
 # Start here
 
-This is OpenSteady Web 0.1.4.
+This is OpenSteady Web 0.1.5.
 
 1. Unzip this download. Open the outer **opensteady-web** folder.
 2. In Chrome, open `chrome://extensions`. Turn on **Developer mode**. Click **Load unpacked** and select the **extension** folder.
@@ -18,7 +18,9 @@ This is OpenSteady Web 0.1.4.
 
 Move slowly beside a small button. If a green outline appears, a near miss can be corrected. Some gaps deliberately get no correction. Correct clicks keep normal behavior.
 
-**What is new in 0.1.4.** If the pointer is shaking just before you press, the press may wander further and still count as a click. A quick drag on a link or button is kept as a click. Selected text somewhere on the page no longer switches assistance off. To try the second one, move the mouse a little while clicking a link in the lab's **Dense list**. To try the first, shake the mouse for half a second beside a small button with the outline showing, then click while still shaking.
+**What is new in 0.1.5.** Press **Alt+Shift+S** (Control+Shift+S on a Mac) to turn assistance on or off on the current tab without opening the toolbar. Under **Settings & privacy** you can make the outline bold or high contrast (black on yellow). The popup and settings follow your Mac's dark mode. Clicking itself works exactly as in 0.1.4.
+
+**New in 0.1.4.** If the pointer is shaking just before you press, the press may wander further and still count as a click. A quick drag on a link or button is kept as a click. Selected text somewhere on the page no longer switches assistance off. To try the second one, move the mouse a little while clicking a link in the lab's **Dense list**. To try the first, shake the mouse for half a second beside a small button with the outline showing, then click while still shaking.
 
 **To drag a link on purpose:** press, wait half a second, then move. A drag that starts the instant you press is treated as a slip. You can switch this off under **Settings & privacy**.
 

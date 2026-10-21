@@ -2,7 +2,7 @@
 
 ## Current status
 
-0.1.4 is a source release and locally installable prototype. This document prepares store submission. It does not claim submission, store approval, publication, testing by real users, or coverage of outside websites.
+0.1.5 is a source release and locally installable prototype. This document prepares store submission. It does not claim submission, store approval, publication, testing by real users, or coverage of outside websites.
 
 ## Store description draft
 
@@ -21,6 +21,7 @@ Experimental release: benefit for people with tremor has not been established. W
 | activeTab | Temporary access when the user opens the extension and enables this tab |
 | scripting | Inject the bundled local controller into explicitly enabled pages |
 | storage | Save preferences and chosen hosts. Tab choices that last only for the browser session |
+| (no permission) keyboard shortcuts | `commands` in the manifest. Pressing a shortcut grants activeTab for the current tab, like opening the popup |
 | Optional http and https hosts | Request one host only when the user chooses "Always enable on this site" |
 
 No mandatory host permissions, permission to read browsing history, downloads permission, remote code, or data transmission. Chosen hostnames are stored locally and should be described accurately in any store questionnaire about data use. The page DOM and pointer inputs are processed transiently on enabled pages.

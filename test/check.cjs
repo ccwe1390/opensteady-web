@@ -12,7 +12,7 @@ for(const p of [m.background.service_worker,m.action.default_popup,m.options_pag
 for(const file of files(extension).filter(p=>p.endsWith('.js'))){
   const s=fs.readFileSync(file,'utf8');assert.ok(!/\b(fetch|XMLHttpRequest|WebSocket|sendBeacon|eval)\s*\(/.test(s),'Network/eval surface: '+file);
 }
-for(const html of files(root).filter(p=>p.endsWith('.html'))){
+for(const html of files(root).filter(p=>!p.includes('node_modules')&&p.endsWith('.html'))){
   const text=fs.readFileSync(html,'utf8');
   for(const match of text.matchAll(/<(?:script|link)[^>]+(?:src|href)="([^"]+)"/g))assert.ok(fs.existsSync(path.resolve(path.dirname(html),match[1])),html+' -> '+match[1]);
 }

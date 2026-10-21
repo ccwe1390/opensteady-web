@@ -424,6 +424,37 @@ async function main(){
     assert.match(await page.locator('#prompt').textContent(),/activation without a mouse press/);
     assert.equal(await page.locator('#stop').isDisabled(),true);assert.equal(await page.locator('#exportTrace').isDisabled(),true);
   });
+  if(!controllerOnly){
+    // 0.1.5: catalog-driven pages, keyboard shortcuts, outline style and dark mode, in the installed extension.
+    await run('keyboard shortcuts are registered with their catalog descriptions',async()=>{
+      const commands=await worker.evaluate(async()=>await chrome.commands.getAll());
+      const toggle=commands.find(c=>c.name==='toggle-tab'),pause=commands.find(c=>c.name==='pause-everywhere');
+      assert.equal(toggle.description,'Turn assistance on or off on this tab');assert.equal(toggle.shortcut,'Alt+Shift+S');
+      assert.equal(pause.description,'Pause or resume assistance everywhere');assert.equal(pause.shortcut,'');
+    });
+    await run('settings page renders from the catalog, shows the manifest version, and saves the outline style',async()=>{
+      const ui=await context.newPage();const uiErrors=[];ui.on('pageerror',e=>uiErrors.push(e.message));
+      await ui.goto(`chrome-extension://${extensionId}/ui/options.html`);await ui.waitForFunction(()=>document.getElementById('dwellMs').value!=='');
+      assert.equal(await ui.title(),'OpenSteady settings');assert.equal(await ui.locator('html').getAttribute('lang'),'en');
+      const version=JSON.parse(fs.readFileSync(path.join(extension,'manifest.json'),'utf8')).version;
+      assert.match(await ui.locator('#version').textContent(),new RegExp('^Version '+version.replace(/\./g,'\\.')+' '));
+      assert.equal(await ui.locator('#outline option').count(),3);assert.equal(await ui.locator('kbd').first().textContent(),'Escape');
+      await ui.locator('#outline').selectOption('contrast');await ui.locator('#save').click();await ui.waitForFunction(()=>document.getElementById('status').textContent==='Saved.');
+      assert.equal((await worker.evaluate(async()=>(await chrome.storage.local.get('settings')).settings)).outline,'contrast');
+      await ui.emulateMedia({colorScheme:'dark'});assert.equal(await ui.evaluate(()=>getComputedStyle(document.documentElement).backgroundColor),'rgb(16, 26, 30)');
+      await ui.locator('#outline').selectOption('standard');await ui.locator('#save').click();await ui.waitForFunction(()=>document.getElementById('status').textContent==='Saved.');
+      assert.deepEqual(uiErrors,[]);await ui.close();
+    });
+    await run('popup opened outside a webpage explains itself and shows the tab shortcut',async()=>{
+      const ui=await context.newPage();const uiErrors=[];ui.on('pageerror',e=>uiErrors.push(e.message));
+      await ui.goto(`chrome-extension://${extensionId}/ui/popup.html`);
+      await ui.waitForFunction(()=>document.getElementById('shortcut').textContent!=='');
+      assert.match(await ui.locator('#shortcut').textContent(),/Alt\+Shift\+S/);
+      await ui.waitForFunction(()=>document.getElementById('status').textContent!=='Checking this page…');
+      assert.equal(await ui.locator('#status').textContent(),'Open a regular webpage to use OpenSteady.');
+      assert.deepEqual(uiErrors,[]);await ui.close();
+    });
+  }
   assert.deepEqual(errors,[]);
   await page.screenshot({path:path.join(root,'results/lab.png'),fullPage:true});
   fs.writeFileSync(path.join(root,controllerOnly?'results/browser-controller.json':'results/browser.json'),JSON.stringify({generatedAt:new Date().toISOString(),browser:context.browser()?.version()||'Chromium',mode:controllerOnly?'isolated-controller-only':'extension-localhost-fixture',extensionId,results,measurements,errors,limits:controllerOnly?['No extension installation, permission, messaging, or service-worker integration exercised.']:['Localhost fixture manifest has a test-only host permission.']},null,2)+'\n');

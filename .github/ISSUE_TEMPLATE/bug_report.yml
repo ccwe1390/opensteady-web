@@ -1,0 +1,41 @@
+name: Bug report
+description: Something clicked the wrong thing, did nothing, or got stuck
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do **not** include passwords, private URLs, medical details, screenshots of personal data, or pointer recordings.
+        If you want to share a lab recording, export an anonymized one from the local lab and say so below.
+  - type: dropdown
+    id: severity
+    attributes:
+      label: What happened?
+      options:
+        - A different control was clicked than the one I aimed at
+        - Nothing was clicked when it should have been
+        - A click happened that I did not make (for example hold to click)
+        - The extension would not turn off, pause, or resume
+        - The page broke or slowed down
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps
+      description: The kind of page (hostname only if public), what you did, and what you expected.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: OpenSteady Web version (settings page), Chrome version, operating system
+    validations:
+      required: true
+  - type: textarea
+    id: settings
+    attributes:
+      label: Settings that were on
+      description: Quick drag guard, repeat guard, hold to click (and its time), target selection, outline style

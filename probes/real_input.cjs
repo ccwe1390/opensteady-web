@@ -13,7 +13,7 @@ const FILES=JSON.parse(fs.readFileSync(path.join(extension,'background.js'),'utf
   await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;
   const profile=fs.mkdtempSync(path.join(os.tmpdir(),'osreal-'));const fx=path.join(profile,'ext');fs.cpSync(extension,fx,{recursive:true});
   const m=JSON.parse(fs.readFileSync(path.join(fx,'manifest.json'),'utf8'));m.host_permissions=['http://127.0.0.1/*'];fs.writeFileSync(path.join(fx,'manifest.json'),JSON.stringify(m));
-  const ctx=await chromium.launchPersistentContext(profile,{headless:true,channel:'chromium',viewport:{width:1100,height:800},args:[`--disable-extensions-except=${fx}`,`--load-extension=${fx}`]});
+  const ctx=await chromium.launchPersistentContext(profile,{headless:true,channel:'chromium',...(process.env.CHROME_EXECUTABLE?{executablePath:process.env.CHROME_EXECUTABLE}:{}),viewport:{width:1100,height:800},args:[`--disable-extensions-except=${fx}`,`--load-extension=${fx}`]});
   const worker=ctx.serviceWorkers()[0]||await ctx.waitForEvent('serviceworker');
   const page=await ctx.newPage();await page.goto(base+'/page.html');
   const tabId=await worker.evaluate(async()=>{const tabs=await chrome.tabs.query({});return tabs.find(t=>t.url?.includes('/page.html')).id;});

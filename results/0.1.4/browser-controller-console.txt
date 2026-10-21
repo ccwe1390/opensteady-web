@@ -1,0 +1,41 @@
+PASS first native click preserves trusted event sequence
+PASS previewed near miss delivers exactly one click
+PASS near-miss drag never activates selected target
+PASS synthetic page events cannot trigger assistance
+PASS modifier near miss remains an ordinary miss
+PASS form gaps and closed custom-element controls never redirect to a neighboring button
+PASS explicit no-assist target keeps native clicks but receives no near-miss correction
+PASS risky and covered targets receive no redirected click
+PASS target movement during a press cancels correction
+PASS small slip off a directly pressed button is rescued
+PASS repeat guard blocks only second activation; disabling restores both
+PASS keyboard activation and text editing remain native
+PASS Escape pauses page, explicit enable resumes
+PASS trusted-only control demonstrates redirect limitation
+PASS native checkbox, nested label, and iframe clicks work
+PASS a removed target and an unlabeled control receive no correction
+PASS double-click text selection is preserved
+PASS hold to click activates a small target with ongoing jitter only once
+PASS 100-Hz requested mouse jitter completes six dwell countdowns
+PASS manual clicks and Escape prevent later dwell activation on the same aim
+PASS hold to click respects form, risky, and explicit no-assist exclusions
+PASS the quick drag guard, on by default, preserves a shaking same-link press
+PASS cancelled large returning link drag produces no induced click
+PASS switching the guard off, or holding a modifier key, leaves a link drag to the browser
+PASS press, wait, then drag still drags a link; a quick long drag is cancelled and clicks nothing
+PASS a press on a link whose own text is selected still clicks it
+PASS selected text elsewhere on the page does not stop a near miss
+PASS a near miss released on the outlined target itself is delivered once
+PASS a wide slip off a pressed button is rescued after measured shake, and not for a steady hand
+PASS a press on selected text beside the outlined target is delivered for a shaking hand, and left alone for a steady one
+PASS a steady drag that selects text beside the outlined target is a selection; the same drag by a shaking hand is a slip
+PASS only the selected part of the text under the pointer counts as selected
+PASS a link whose page cancels dragging itself keeps its clicks, however the press wanders or lingers
+PASS a handle marked draggable inside a link is dragged by the page, not cancelled by the guard
+PASS a control nested inside the pressed control: the page receives one trusted click, not a synthetic one
+PASS after a cancelled drag, a scroll event during the press does not cost the click
+PASS after a cancelled drag, a link inside a clickable card: the card never gets a click the browser would not have sent
+PASS a mild tremor that leaves the press limit at 12 px still gets help beside a target on text
+PASS 5,000-link indexing preserves native clicks; 6,000-control cap abstains
+PASS lab simulation and recording exports run without page errors
+PASS press/release recording stops on activation without a physical mouse press

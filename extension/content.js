@@ -19,6 +19,12 @@
   meter.style.cssText = 'position:absolute;left:0;bottom:0;height:4px;width:100%;background:#078265;transform-origin:left;transform:scaleX(0);pointer-events:none;';
   box.appendChild(meter);
   shadow.appendChild(box); document.documentElement.appendChild(host);
+  // Outline styles: border width, color, halo, progress bar height. "contrast" is black on a yellow halo, visible on light and dark pages.
+  const OUTLINES = { standard: ['2px', '#078265', '0 0 0 2px #fff9', '4px'], bold: ['4px', '#078265', '0 0 0 2px #fff', '6px'], contrast: ['4px', '#000', '0 0 0 3px #ffd400', '6px'] };
+  function styleOutline(kind) {
+    const [width, color, halo, bar] = OUTLINES[kind] || OUTLINES.standard;
+    box.style.borderWidth = width; box.style.borderColor = color; box.style.boxShadow = halo; meter.style.background = color; meter.style.height = bar;
+  }
   function hide() { box.style.display = 'none'; preview = null; meter.style.transform = 'scaleX(0)'; }
   function clear() { hide(); frozen = null; lastPoint = null; dwell.cancel(); selector.reset(); policy.cancel(); linkDrag.abort(); jitter.reset(); }
   function error() {
@@ -328,6 +334,7 @@
   function configure(value, resume = true) {
     config = { ...OpenSteadySettings.normalizeSettings(value), enabled: value.enabled === true };
     if (resume) paused = false;
+    styleOutline(config.outline);
     heldAlt = false; clear(); policy.reset();
     linkDrag.reset(); pendingDrag = null; pressBlocked = false; pressSteady = true; pressOnControl = false; pressMadeSelection = false;
     selectionAtPress = null; lastPress = null; lastDecision = null;

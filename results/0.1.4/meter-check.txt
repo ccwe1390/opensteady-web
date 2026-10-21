@@ -1,0 +1,21 @@
+Shake as a sine wave on both axes, sampled 60 times a second, whole pixels, no travel.
+"unknown" is how often the meter declined to answer. "reads" is its answer as a share of the true size.
+
+True shake 8 px RMS
+   3 Hz   unknown  98%   reads 0.43 to 0.43 of the true size (middle 0.43)
+   4 Hz   unknown   0%   reads 0.69 to 0.80 of the true size (middle 0.73)
+   5 Hz   unknown   0%   reads 0.93 to 1.00 of the true size (middle 0.98)
+   6 Hz   unknown   0%   reads 1.02 to 1.06 of the true size (middle 1.05)
+   8 Hz   unknown   0%   reads 1.02 to 1.05 of the true size (middle 1.04)
+  10 Hz   unknown   0%   reads 1.05 to 1.10 of the true size (middle 1.09)
+  12 Hz   unknown   0%   reads 1.05 to 1.09 of the true size (middle 1.08)
+
+True shake 16 px RMS
+   3 Hz   unknown 100%   reads  n/a to  n/a of the true size (middle  n/a)
+   4 Hz   unknown   0%   reads 0.68 to 0.79 of the true size (middle 0.74)
+   5 Hz   unknown   0%   reads 0.93 to 1.01 of the true size (middle 0.97)
+   6 Hz   unknown   0%   reads 1.03 to 1.05 of the true size (middle 1.04)
+   8 Hz   unknown   0%   reads 1.02 to 1.04 of the true size (middle 1.03)
+  10 Hz   unknown   0%   reads 1.06 to 1.09 of the true size (middle 1.07)
+  12 Hz   unknown   0%   reads 1.06 to 1.09 of the true size (middle 1.07)
+

@@ -1,9 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "OpenSteady Web",
-  "version": "0.1.4",
+  "default_locale": "en",
+  "name": "__MSG_extName__",
+  "version": "0.1.5",
   "minimum_chrome_version": "120",
-  "description": "Optional help with near misses, slips, quick drags and repeated clicks, plus hold to click without pressing, inside webpages.",
+  "description": "__MSG_extDescription__",
   "permissions": [
     "activeTab",
     "scripting",
@@ -18,7 +19,7 @@
   },
   "action": {
     "default_popup": "ui/popup.html",
-    "default_title": "OpenSteady Web"
+    "default_title": "__MSG_extName__"
   },
   "options_page": "ui/options.html",
   "icons": {
@@ -28,5 +29,17 @@
   },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'none'"
+  },
+  "commands": {
+    "toggle-tab": {
+      "suggested_key": {
+        "default": "Alt+Shift+S",
+        "mac": "MacCtrl+Shift+S"
+      },
+      "description": "__MSG_cmdToggleTab__"
+    },
+    "pause-everywhere": {
+      "description": "__MSG_cmdPauseAll__"
+    }
   }
 }

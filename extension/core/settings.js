@@ -1,6 +1,7 @@
 (function (root) {
   'use strict';
-  const DEFAULTS = Object.freeze({ enabled: true, sites: [], mode: 'stable', doubleGuard: true, radius: 24, dwellEnabled: false, dwellMs: 900, dragGuard: true });
+  const DEFAULTS = Object.freeze({ enabled: true, sites: [], mode: 'stable', doubleGuard: true, radius: 24, dwellEnabled: false, dwellMs: 900, dragGuard: true, outline: 'standard' });
+  const OUTLINES = Object.freeze(['standard', 'bold', 'contrast']);
   function siteKey(url) {
     try { const u = new URL(url); return /^https?:$/.test(u.protocol) ? u.protocol + '//' + u.hostname : null; } catch { return null; }
   }
@@ -15,10 +16,12 @@
       dwellEnabled: value.dwellEnabled === true,
       // On unless switched off. Named dragGuard since 0.1.4; the 0.1.3 key linkDragGuard is ignored.
       dragGuard: value.dragGuard !== false,
-      dwellMs: Math.max(500, Math.min(2000, Number.isFinite(value.dwellMs) ? value.dwellMs : 900))
+      dwellMs: Math.max(500, Math.min(2000, Number.isFinite(value.dwellMs) ? value.dwellMs : 900)),
+      // Appearance only. Added in 0.1.5; never changes which target is chosen or when.
+      outline: OUTLINES.includes(value.outline) ? value.outline : 'standard'
     };
   }
-  const api = { DEFAULTS, normalizeSettings, siteKey };
+  const api = { DEFAULTS, OUTLINES, normalizeSettings, siteKey };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.OpenSteadySettings = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);
