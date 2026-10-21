@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-03T08:00:29.941Z",
+  "generatedAt": "2026-10-21T21:25:42.599Z",
   "browser": "141.0.7390.37",
   "mode": "extension-localhost-fixture",
-  "extensionId": "fkkgmabmkikmanmbmlmhgjblakdgadjg",
+  "extensionId": "gdknipihkolgneogaidljoffdjhmcehp",
   "results": [
     {
       "name": "first native click preserves trusted event sequence",
@@ -167,6 +167,18 @@
     {
       "name": "press/release recording stops on activation without a physical mouse press",
       "status": "passed"
+    },
+    {
+      "name": "keyboard shortcuts are registered with their catalog descriptions",
+      "status": "passed"
+    },
+    {
+      "name": "settings page renders from the catalog, shows the manifest version, and saves the outline style",
+      "status": "passed"
+    },
+    {
+      "name": "popup opened outside a webpage explains itself and shows the tab shortcut",
+      "status": "passed"
     }
   ],
   "measurements": {
@@ -175,12 +187,12 @@
       "jitterPx": 4,
       "repetitions": 6,
       "activationMs": [
-        1087,
-        1100,
-        1062,
-        1100,
-        1063,
-        1098
+        1086,
+        1061,
+        1097,
+        1059,
+        1096,
+        1059
       ]
     }
   },

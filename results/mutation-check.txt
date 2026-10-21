@@ -1,5 +1,7 @@
 baseline     the unchanged code passes every test
 SURVIVED     control: a comment changed, nothing else (as it should)
+caught (1 failing)    targets: consequential action labels are no longer excluded
+caught (1 failing)    targets: action words are also matched in link addresses
 caught (2 failing)    policy: a native click on another control no longer wins
 caught (5 failing)    policy: a press past its allowed distance can be redirected
 caught (2 failing)    policy: the wide limit also applies to long presses
@@ -62,5 +64,5 @@ caught (1 failing)    pointer: shake is sampled while paused
 caught (1 failing)    pointer: the shake history survives a scroll
 caught (1 failing)    errors: three internal errors no longer pause the page
 
-61 faults listed, 61 applied, 61 caught by the unit tests, 0 survived.
+63 faults listed, 63 applied, 63 caught by the unit tests, 0 survived.
 Checked with Node v22.22.0. The control fault survived, as it should.

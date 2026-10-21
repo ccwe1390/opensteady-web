@@ -1,0 +1,8 @@
+{"rms":8,"cond":"extension off","correct":38,"wrong":0,"miss":28,"untrustedDelivered":0,"linkCorrect":0,"linkN":24,"buttonCorrect":38,"buttonN":42,"redirects":0,"preventedDrags":0,"rejected":0}
+{"rms":8,"cond":"defaults","correct":63,"wrong":0,"miss":3,"untrustedDelivered":5,"linkCorrect":22,"linkN":24,"buttonCorrect":41,"buttonN":42,"redirects":5,"preventedDrags":26,"rejected":1}
+{"rms":8,"cond":"quick drag guard switched off","correct":41,"wrong":0,"miss":25,"untrustedDelivered":3,"linkCorrect":0,"linkN":24,"buttonCorrect":41,"buttonN":42,"redirects":3,"preventedDrags":0,"rejected":0}
+{"rms":16,"cond":"extension off","correct":13,"wrong":0,"miss":53,"untrustedDelivered":0,"linkCorrect":0,"linkN":24,"buttonCorrect":13,"buttonN":42,"redirects":0,"preventedDrags":0,"rejected":0}
+{"rms":16,"cond":"defaults","correct":48,"wrong":0,"miss":18,"untrustedDelivered":27,"linkCorrect":12,"linkN":24,"buttonCorrect":36,"buttonN":42,"redirects":27,"preventedDrags":18,"rejected":2}
+{"rms":16,"cond":"quick drag guard switched off","correct":28,"wrong":0,"miss":38,"untrustedDelivered":14,"linkCorrect":1,"linkN":24,"buttonCorrect":27,"buttonN":42,"redirects":14,"preventedDrags":0,"rejected":0}
+timing: planned hold 121 ms, actual hold 120 ms, schedule lag at release 9 ms
+browser: Chrome/141.0.0.0, linux, 66 trials per condition

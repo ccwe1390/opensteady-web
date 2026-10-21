@@ -1,7 +1,3 @@
-
-> opensteady-web@0.1.4 test:browser
-> node test/browser.cjs
-
 PASS first native click preserves trusted event sequence
 PASS previewed near miss delivers exactly one click
 PASS near-miss drag never activates selected target
@@ -43,3 +39,6 @@ PASS a mild tremor that leaves the press limit at 12 px still gets help beside a
 PASS 5,000-link indexing preserves native clicks; 6,000-control cap abstains
 PASS lab simulation and recording exports run without page errors
 PASS press/release recording stops on activation without a physical mouse press
+PASS keyboard shortcuts are registered with their catalog descriptions
+PASS settings page renders from the catalog, shows the manifest version, and saves the outline style
+PASS popup opened outside a webpage explains itself and shows the tab shortcut

@@ -1,4 +1,4 @@
-# Probes for OpenSteady Web 0.1.4
+# Probes for OpenSteady Web
 
 Written by Claude (AI assistant) on 2026-10-02. These are measurement scripts. None of them is part of the extension, and none is included in the store ZIP.
 
@@ -12,6 +12,8 @@ Setup, from the `opensteady-web` folder:
 npm install
 npx playwright install chromium
 ```
+
+Results below are for 0.1.4 (Chromium 141 on Linux). On 0.1.5 every probe gave the same result apart from small timing differences. See `docs/VALIDATION.md`. Set `CHROME_EXECUTABLE=/path/to/chrome` to use a browser other than Playwright's own.
 
 | Command | What it measures | Result on 0.1.4, Chromium 141 on Linux |
 |---|---|---|
