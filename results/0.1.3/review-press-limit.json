@@ -1,0 +1,8 @@
+{
+  "source": "development synthetic geometry",
+  "rmsPx": 8,
+  "needsCorrection": 360,
+  "over12Px": 349,
+  "percent": 96.94444444444444,
+  "definition": "Native model has no same-target press/release click; maximum excursion from press through release exceeds 12 px."
+}

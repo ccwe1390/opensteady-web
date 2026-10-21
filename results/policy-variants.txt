@@ -1,0 +1,30 @@
+
+RMS 0 px, 1800 trials
+  extension off                                             correct  1800 (100.0%)  wrong     0 (  0.0%)  miss     0 (  0.0%)
+  press limit fixed at 12 px, steady selector               correct  1800 (100.0%)  wrong     0 (  0.0%)  miss     0 (  0.0%)
+  shipped rule (limit scales with shake), steady selector   correct  1800 (100.0%)  wrong     0 (  0.0%)  miss     0 (  0.0%)
+  press limit fixed at 12 px, nearest selector              correct  1800 (100.0%)  wrong     0 (  0.0%)  miss     0 (  0.0%)
+  shipped rule (limit scales with shake), nearest selector  correct  1800 (100.0%)  wrong     0 (  0.0%)  miss     0 (  0.0%)
+
+RMS 4 px, 1800 trials
+  extension off                                             correct  1782 ( 99.0%)  wrong     0 (  0.0%)  miss    18 (  1.0%)
+  press limit fixed at 12 px, steady selector               correct  1794 ( 99.7%)  wrong     0 (  0.0%)  miss     6 (  0.3%)
+  shipped rule (limit scales with shake), steady selector   correct  1798 ( 99.9%)  wrong     0 (  0.0%)  miss     2 (  0.1%)
+  press limit fixed at 12 px, nearest selector              correct  1794 ( 99.7%)  wrong     0 (  0.0%)  miss     6 (  0.3%)
+  shipped rule (limit scales with shake), nearest selector  correct  1798 ( 99.9%)  wrong     0 (  0.0%)  miss     2 (  0.1%)
+
+RMS 8 px, 1800 trials
+  extension off                                             correct  1440 ( 80.0%)  wrong     0 (  0.0%)  miss   360 ( 20.0%)
+  press limit fixed at 12 px, steady selector               correct  1451 ( 80.6%)  wrong     0 (  0.0%)  miss   349 ( 19.4%)
+  shipped rule (limit scales with shake), steady selector   correct  1757 ( 97.6%)  wrong     0 (  0.0%)  miss    43 (  2.4%)
+  press limit fixed at 12 px, nearest selector              correct  1450 ( 80.6%)  wrong     0 (  0.0%)  miss   350 ( 19.4%)
+  shipped rule (limit scales with shake), nearest selector  correct  1729 ( 96.1%)  wrong     8 (  0.4%)  miss    63 (  3.5%)
+
+RMS 16 px, 1800 trials
+  extension off                                             correct   481 ( 26.7%)  wrong    30 (  1.7%)  miss  1289 ( 71.6%)
+  press limit fixed at 12 px, steady selector               correct   482 ( 26.8%)  wrong    30 (  1.7%)  miss  1288 ( 71.6%)
+  shipped rule (limit scales with shake), steady selector   correct  1339 ( 74.4%)  wrong    30 (  1.7%)  miss   431 ( 23.9%)
+  press limit fixed at 12 px, nearest selector              correct   482 ( 26.8%)  wrong    30 (  1.7%)  miss  1288 ( 71.6%)
+  shipped rule (limit scales with shake), nearest selector  correct  1121 ( 62.3%)  wrong   174 (  9.7%)  miss   505 ( 28.1%)
+
+Synthetic paths only. The replay cannot model the browser turning a moving press into a drag, or text selection.

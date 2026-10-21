@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Trial page for trusted input</title>
+<style>
+  body { font: 15px/1.4 system-ui, sans-serif; margin: 16px 24px; }
+  section { margin: 14px 0; } h2 { font-size: 13px; margin: 0 0 8px; }
+  .reactions button { width: 28px; height: 28px; margin-right: 4px; padding: 0; font-size: 15px; }
+  .toolbar button { width: 20px; height: 20px; margin-right: 16px; padding: 0; font-size: 10px; }
+  .links a { display: block; font-size: 14px; line-height: 18px; width: max-content; }
+  .big button { width: 160px; height: 48px; margin-right: 80px; font-size: 16px; }
+</style></head><body>
+<h1 style="font-size:20px;margin:0 0 4px">Trial page</h1><p style="margin:0 0 16px">Same layout as the starter lab.</p>
+<section class="reactions"><h2>Reaction bar</h2>
+<button type="button" class="t">A</button><button type="button" class="t">B</button><button type="button" class="t">C</button><button type="button" class="t">D</button><button type="button" class="t">E</button><button type="button" class="t">F</button></section>
+<section class="toolbar"><h2>Toolbar</h2>
+<button type="button" class="t">1</button><button type="button" class="t">2</button><button type="button" class="t">3</button><button type="button" class="t">4</button><button type="button" class="t">5</button><button type="button" class="t">6</button></section>
+<section class="links"><h2>Dense links</h2>
+<a class="t" href="#l1">Appointments and visits</a><a class="t" href="#l2">Messages from your care team</a><a class="t" href="#l3">Test results</a><a class="t" href="#l4">Medications</a>
+<a class="t" href="#l5">Billing and insurance</a><a class="t" href="#l6">Request a refill</a><a class="t" href="#l7">Find a doctor</a><a class="t" href="#l8">Account settings</a></section>
+<section class="big"><h2>Large buttons</h2><button type="button" class="t">Continue</button><button type="button" class="t">Go back</button></section>
+<script>
+  window.clicks = [];
+  [...document.querySelectorAll('.t')].forEach((el, i) => el.addEventListener('click', e => { e.preventDefault(); window.clicks.push({ i, trusted: e.isTrusted }); }));
+</script></body></html>

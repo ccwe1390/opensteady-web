@@ -1,0 +1,1 @@
+Alt + click on a link: downloads started = 1 | navigated = false

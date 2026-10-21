@@ -1,7 +1,7 @@
 'use strict';
 importScripts('core/settings.js');
 const { normalizeSettings, siteKey } = OpenSteadySettings;
-const FILES = ['core/selector.js','core/policy.js','core/settings.js','targets.js','content.js'];
+const FILES = ['core/selector.js','core/policy.js','core/dwell.js','core/link-drag.js','core/jitter.js','core/settings.js','targets.js','content.js'];
 let queue = Promise.resolve();
 function ordered(task) { const next = queue.then(task, task); queue = next.catch(() => {}); return next; }
 async function settings() { return normalizeSettings((await chrome.storage.local.get('settings')).settings); }
@@ -38,6 +38,20 @@ async function synchronize() {
     if (tab.id !== undefined && tab.url) await sendConfig(tab.id, tab.url, true).catch(() => {});
   }
 }
+async function reconcileRevokedSites() {
+  const s = await settings(), revoked = [];
+  for (const site of s.sites) if (!await chrome.permissions.contains({ origins: [site + '/*'] })) revoked.push(site);
+  if (revoked.length) {
+    const sessions = await chrome.storage.session.get(null), disabled = {};
+    for (const [key, value] of Object.entries(sessions)) {
+      if (key.startsWith('tab:') && revoked.includes(value?.site)) disabled[key] = { ...value, enabled: false };
+    }
+    if (Object.keys(disabled).length) await chrome.storage.session.set(disabled);
+    s.sites = s.sites.filter(site => !revoked.includes(site));
+    await chrome.storage.local.set({ settings: s });
+  }
+  await synchronize();
+}
 async function handle(message, sender) {
   if (sender.id !== chrome.runtime.id) throw new Error('Unsupported sender.');
   if (message.type === 'content-config') {
@@ -50,7 +64,7 @@ async function handle(message, sender) {
   if (message.type === 'save-settings') {
     const old = await settings();
     const patch = {};
-    for (const key of ['enabled','mode','doubleGuard','radius']) {
+    for (const key of ['enabled','mode','doubleGuard','radius','dwellEnabled','dwellMs','dragGuard']) {
       if (message.settings && Object.prototype.hasOwnProperty.call(message.settings,key)) patch[key] = message.settings[key];
     }
     const updated = normalizeSettings({ ...old, ...patch });
@@ -105,7 +119,7 @@ chrome.runtime.onInstalled.addListener(() => ordered(async () => {
   await chrome.storage.local.set({ settings: await settings() }); await synchronize();
 }).catch(() => {}));
 chrome.runtime.onStartup.addListener(() => ordered(synchronize).catch(() => {}));
-chrome.permissions.onRemoved.addListener(() => ordered(synchronize).catch(() => {}));
+chrome.permissions.onRemoved.addListener(() => ordered(reconcileRevokedSites).catch(() => {}));
 chrome.tabs.onRemoved.addListener(tabId => chrome.storage.session.remove('tab:' + tabId).catch(() => {}));
 chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
   if (change.status === 'complete' && tab.url) ordered(() => sendConfig(tabId, tab.url, true)).catch(() => {});

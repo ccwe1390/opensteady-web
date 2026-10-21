@@ -1,0 +1,135 @@
+{
+  "generatedAt": "2026-10-02T23:08:21.144Z",
+  "browser": "151.0.7922.34",
+  "mode": "isolated-controller-only",
+  "extensionId": null,
+  "results": [
+    {
+      "name": "first native click preserves trusted event sequence",
+      "status": "passed"
+    },
+    {
+      "name": "previewed near miss delivers exactly one click",
+      "status": "passed"
+    },
+    {
+      "name": "near-miss drag never activates selected target",
+      "status": "passed"
+    },
+    {
+      "name": "synthetic page events cannot trigger assistance",
+      "status": "passed"
+    },
+    {
+      "name": "modifier near miss remains an ordinary miss",
+      "status": "passed"
+    },
+    {
+      "name": "form gaps and closed custom-element controls never redirect to a neighboring button",
+      "status": "passed"
+    },
+    {
+      "name": "explicit no-assist target keeps native clicks but receives no near-miss correction",
+      "status": "passed"
+    },
+    {
+      "name": "risky and covered targets receive no redirected click",
+      "status": "passed"
+    },
+    {
+      "name": "target movement during a press cancels correction",
+      "status": "passed"
+    },
+    {
+      "name": "small slip off a directly pressed button is rescued",
+      "status": "passed"
+    },
+    {
+      "name": "repeat guard blocks only second activation; disabling restores both",
+      "status": "passed"
+    },
+    {
+      "name": "keyboard activation and text editing remain native",
+      "status": "passed"
+    },
+    {
+      "name": "Escape pauses page, explicit enable resumes",
+      "status": "passed"
+    },
+    {
+      "name": "trusted-only control demonstrates redirect limitation",
+      "status": "passed"
+    },
+    {
+      "name": "native checkbox, nested label, and iframe clicks work",
+      "status": "passed"
+    },
+    {
+      "name": "a removed target and an unlabeled control receive no correction",
+      "status": "passed"
+    },
+    {
+      "name": "double-click text selection is preserved",
+      "status": "passed"
+    },
+    {
+      "name": "hold-to-click activates a small target with ongoing jitter only once",
+      "status": "passed"
+    },
+    {
+      "name": "100-Hz requested mouse jitter completes six dwell countdowns",
+      "status": "passed"
+    },
+    {
+      "name": "manual clicks and Escape prevent later dwell activation on the same aim",
+      "status": "passed"
+    },
+    {
+      "name": "hold-to-click respects form, risky, and explicit no-assist exclusions",
+      "status": "passed"
+    },
+    {
+      "name": "opt-in link drag prevention preserves a shaking same-link press",
+      "status": "passed"
+    },
+    {
+      "name": "cancelled large returning link drag produces no induced click",
+      "status": "passed"
+    },
+    {
+      "name": "default setting and Alt before press leave link drag prevention inactive",
+      "status": "passed"
+    },
+    {
+      "name": "5,000-link indexing preserves native clicks; 6,000-control cap abstains",
+      "status": "passed"
+    },
+    {
+      "name": "lab simulation and recording exports run without page errors",
+      "status": "passed"
+    },
+    {
+      "name": "press/release recording stops on activation without a physical mouse press",
+      "status": "passed"
+    }
+  ],
+  "measurements": {
+    "highRateDwell": {
+      "requestedMovesPerSecond": 100,
+      "jitterPx": 4,
+      "repetitions": 6,
+      "activationMs": [
+        1106,
+        1068,
+        1065,
+        1061,
+        1098,
+        1063
+      ]
+    }
+  },
+  "errors": [],
+  "limits": [
+    "No extension installation, permission, messaging, or service-worker integration exercised."
+  ]
+}

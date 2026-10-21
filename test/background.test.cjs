@@ -55,3 +55,26 @@ test('clear revokes unused optional grants and forgetting switches off other tab
   h.origins.add('https://example.com/*');await h.send({type:'remember-site',tabId:1,enabled:true});h.session['tab:3']={site:'https://example.com',enabled:true};
   await h.send({type:'remember-site',tabId:1,enabled:false});assert.equal(h.session['tab:3'].enabled,false);
 });
+test('browser-level permission revocation disables existing sessions and forgets that site',async()=>{
+  const h=mock();h.origins.add('https://example.com/*');
+  await h.send({type:'remember-site',tabId:1,enabled:true});
+  h.session['tab:3']={site:'https://example.com',enabled:true};
+  h.session['tab:4']={site:'https://other.com',enabled:true};
+  h.origins.delete('https://example.com/*');
+  h.chrome.permissions.onRemoved.callbacks[0]({origins:['https://example.com/*']});
+  // Messages share the worker queue, so this waits for revocation reconciliation.
+  const r=await h.send({type:'tab-status',tabId:1});
+  assert.equal(r.config.enabled,false);assert.equal(r.remembered,false);
+  assert.equal(h.session['tab:3'].enabled,false);assert.equal(h.session['tab:4'].enabled,true);
+  assert.equal(h.registered.length,0);
+  assert.equal(h.configs.filter(m=>m.type==='configure').at(-1).config.enabled,false);
+});
+test('hold to click settings propagate without enabling an unselected site',async()=>{
+  const h=mock();const r=await h.send({type:'save-settings',settings:{dwellEnabled:true,dwellMs:1200,dragGuard:false}});
+  assert.equal(r.settings.dwellEnabled,true);assert.equal(r.settings.dwellMs,1200);
+  let state=await h.send({type:'tab-status',tabId:1});assert.equal(state.config.enabled,false);
+  await h.send({type:'set-tab',tabId:1,enabled:true});state=await h.send({type:'tab-status',tabId:1});
+  assert.equal(state.config.dwellEnabled,true);assert.equal(state.config.dwellMs,1200);assert.equal(state.config.dragGuard,false);
+  assert.equal(h.injected.at(-1).files.includes('core/dwell.js'),true);assert.equal(h.injected.at(-1).files.includes('core/jitter.js'),true);
+  assert.ok(h.injected.at(-1).files.indexOf('core/jitter.js')<h.injected.at(-1).files.indexOf('content.js'));
+});

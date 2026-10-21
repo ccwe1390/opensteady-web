@@ -8,7 +8,7 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[1]
 dist = root / "dist"
 dist.mkdir(exist_ok=True)
-skip = {"node_modules", ".git", "dist", "traces", "__pycache__", "playwright-report", "test-results"}
+skip = {"node_modules", ".git", "dist", "release", "traces", "__pycache__", "playwright-report", "test-results"}
 paths = sorted(p for p in root.rglob("*") if p.is_file() and not any(part in skip for part in p.relative_to(root).parts)
                and p.name not in {".DS_Store"} and not p.name.endswith(".pyc"))
 version = json.loads((root / "extension/manifest.json").read_text())["version"]

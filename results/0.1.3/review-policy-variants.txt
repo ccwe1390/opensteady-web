@@ -1,0 +1,24 @@
+
+RMS 4 px, 1800 trials
+  off                                                 correct  99.0%  wrong   0.0%  miss   1.0%
+  shipped policy, steady selector                     correct  99.2%  wrong   0.0%  miss   0.8%
+  no distance limit during press, nearest             correct  99.3%  wrong   0.0%  miss   0.7%
+  no distance limit during press, steady              correct  99.3%  wrong   0.0%  miss   0.7%
+  no limit + release on candidate counts, nearest     correct  99.9%  wrong   0.0%  miss   0.1%
+  no limit + release on candidate counts, steady      correct  99.9%  wrong   0.0%  miss   0.1%
+
+RMS 8 px, 1800 trials
+  off                                                 correct  80.0%  wrong   0.0%  miss  20.0%
+  shipped policy, steady selector                     correct  80.3%  wrong   0.0%  miss  19.7%
+  no distance limit during press, nearest             correct  89.6%  wrong   0.0%  miss  10.4%
+  no distance limit during press, steady              correct  90.0%  wrong   0.0%  miss  10.0%
+  no limit + release on candidate counts, nearest     correct  97.6%  wrong   0.0%  miss   2.4%
+  no limit + release on candidate counts, steady      correct  99.2%  wrong   0.0%  miss   0.8%
+
+RMS 16 px, 1800 trials
+  off                                                 correct  26.7%  wrong   1.7%  miss  71.6%
+  shipped policy, steady selector                     correct  26.8%  wrong   1.7%  miss  71.6%
+  no distance limit during press, nearest             correct  56.1%  wrong   5.2%  miss  38.8%
+  no distance limit during press, steady              correct  67.2%  wrong   5.1%  miss  27.7%
+  no limit + release on candidate counts, nearest     correct  63.7%  wrong   5.2%  miss  31.1%
+  no limit + release on candidate counts, steady      correct  80.6%  wrong   5.1%  miss  14.3%

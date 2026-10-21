@@ -91,7 +91,10 @@ window.addEventListener('pointerup',e=>{if(e.button===0)sample(e,'up');},true);
 targets.forEach(el=>el.addEventListener('click',e=>{
   e.preventDefault();const id=Number(el.dataset.id);$('hit').textContent='Activated: '+(el.getAttribute('aria-label')||el.textContent);
   el.classList.add('hit');setTimeout(()=>el.classList.remove('hit'),200);
-  if(active&&current&&current.samples.some(s=>s.type==='down'))current.observedClickedIds.push(id);
+  if(active&&current){
+    if(current.samples.some(s=>s.type==='down'))current.observedClickedIds.push(id);
+    else {stopRecording();$('prompt').textContent='Stopped: activation without a mouse press. Turn off hold to click and use mouse presses for this recording. Completed trials remain in memory.';}
+  }
 }));
 for(const event of ['resize','scroll'])window.addEventListener(event,()=>{if(active){stopRecording();$('prompt').textContent='Stopped because the field moved. Export completed trials, then start a fresh recording.';}},true);
 $('importTrace').addEventListener('change',async()=>{

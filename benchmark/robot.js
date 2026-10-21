@@ -1,6 +1,6 @@
 /*
  * A scripted hand. It reaches for a target along a smooth path, with synthetic
- * tremor added, then presses and releases.
+ * tremor added, then presses and releases. Written by Claude (AI assistant), 2026-10-02.
  *
  * THIS IS NOT A PERSON. The tremor is a sum of sine waves with a slowly
  * changing amplitude. It exists so that changes to the selector can be compared
@@ -23,8 +23,12 @@
     return Math.sqrt(-2 * Math.log(1 - rand())) * Math.cos(2 * Math.PI * rand());
   }
 
-  /** One trial: returns samples [{t, x, y}] at 100 Hz plus press and release sample indexes. */
-  function makeTrial(rect, rmsPx, rand, bounds) {
+  /**
+   * One trial: returns samples [{t, x, y}] at 100 Hz plus press and release sample indexes.
+   * opts.hover (seconds) fixes how long the hand hovers before pressing. Without it the time is drawn
+   * at random, 0.3 to 0.6 seconds. The random draws are the same either way, so paths stay comparable.
+   */
+  function makeTrial(rect, rmsPx, rand, bounds, opts = {}) {
     const HZ = 100;
     const aimX = rect.x + rect.w / 2 + gauss(rand) * rect.w * 0.12;
     const aimY = rect.y + rect.h / 2 + gauss(rand) * rect.h * 0.12;
@@ -33,7 +37,8 @@
     const sx = Math.min(bounds.w - 5, Math.max(5, aimX + Math.cos(ang) * dist));
     const sy = Math.min(bounds.h - 5, Math.max(5, aimY + Math.sin(ang) * dist));
     const reach = 0.5 + rand() * 0.4;        // seconds moving
-    const dwell = 0.3 + rand() * 0.3;        // seconds settling before the press
+    const drawn = 0.3 + rand() * 0.3;        // seconds settling before the press
+    const dwell = Number.isFinite(opts.hover) ? Math.max(0, opts.hover) : drawn;
     const hold = 0.08 + rand() * 0.08;       // seconds the button is down
     const f = 4 + rand() * 3;                // tremor frequency, 4 to 7 Hz
     const split = 0.3 + rand() * 0.4;        // share of tremor power on the x axis

@@ -1,0 +1,14 @@
+Browser checks added after the reviews of 0.1.4, each run alone against two earlier drafts of 0.1.4 and against this build.
+Run on 2026-10-03 (UTC) with Node 22.22.0, Playwright 1.56.0 and Chromium 141.0.7390.37 on Linux, using this build's test/browser.cjs.
+The earlier drafts are not part of this package. FAIL means the check found a problem in that draft. A check can pass on an older draft
+when the problem it guards against was introduced by a later draft, or when the older draft already behaved correctly in that respect.
+
+Check | draft before any review | draft after the first review | this build
+a steady drag that selects text beside the outlined target|FAIL|pass|pass
+only the selected part of the text under the pointer|pass|pass|pass
+a link whose page cancels dragging itself|FAIL|FAIL|pass
+a handle marked draggable inside a link|FAIL|pass|pass
+a control nested inside the pressed control|FAIL|pass|pass
+after a cancelled drag, a scroll event during the press|FAIL|pass|pass
+after a cancelled drag, a link inside a clickable card|FAIL|FAIL|pass
+a mild tremor that leaves the press limit at 12 px|pass|FAIL|pass

@@ -17,3 +17,13 @@ test('selection result is separate from delivered result',()=>{
   const trial={intendedId:'a',targets,samples:[{t:0,x:10,y:10,type:'move'},{t:.1,x:10,y:10,type:'move'},{t:.2,x:25,y:10,type:'down'},{t:.3,x:40,y:10,type:'up'}]};
   const r=R.replayTrial(trial,'stable');assert.equal(r.policyOutcome,'miss');
 });
+test('the protocol file states the same press and shake settings the code uses by default',()=>{
+  const protocol=require('../benchmark/protocol.json'),P=require('../extension/core/policy.js'),J=require('../extension/core/jitter.js');
+  const policy=new P.ClickPolicy(),meter=new J.JitterMeter();
+  for(const [key,value] of Object.entries(protocol.policyOptions))assert.equal(policy[key],value,key);
+  for(const key of ['window','minSamples','minSpan','settleBase','settleGain'])assert.equal(meter[key],protocol.jitterOptions[key],key);
+  // limitFor: gain 3, never below the base limit, never above the maximum.
+  assert.equal(J.limitFor(1),protocol.policyOptions.slipPx);assert.equal(J.limitFor(10),protocol.jitterOptions.limitGain*10);assert.equal(J.limitFor(1000),protocol.jitterOptions.limitMax);
+  // The selected-text rules count a hand as steady below the stated figure.
+  const below=protocol.jitterOptions.textSteadyBelowPx;assert.equal(J.isSteady(below-0.01),true);assert.equal(J.isSteady(below),false);
+});
