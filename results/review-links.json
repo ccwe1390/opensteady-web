@@ -1,0 +1,571 @@
+{
+  "generatedAt": "2026-10-03T08:03:40.778Z",
+  "browser": "141.0.7390.37",
+  "mode": "extension-localhost-fixture",
+  "seed": 77,
+  "syntheticRmsPx": 8,
+  "rows": [
+    {
+      "dragGuard": false,
+      "n": 32,
+      "correct": 0,
+      "wrong": 0,
+      "miss": 32,
+      "pressAndReleaseInside": 28,
+      "correctInside": 0,
+      "outcomes": [
+        {
+          "intended": 12,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 13,
+          "outcome": "miss",
+          "pressAndReleaseInside": false,
+          "clicks": []
+        },
+        {
+          "intended": 14,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 15,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 16,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 17,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 18,
+          "outcome": "miss",
+          "pressAndReleaseInside": false,
+          "clicks": []
+        },
+        {
+          "intended": 19,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 12,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 13,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 14,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 15,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 16,
+          "outcome": "miss",
+          "pressAndReleaseInside": false,
+          "clicks": []
+        },
+        {
+          "intended": 17,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 18,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 19,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 12,
+          "outcome": "miss",
+          "pressAndReleaseInside": false,
+          "clicks": []
+        },
+        {
+          "intended": 13,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 14,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 15,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 16,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 17,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 18,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 19,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 12,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 13,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 14,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 15,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 16,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 17,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 18,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        },
+        {
+          "intended": 19,
+          "outcome": "miss",
+          "pressAndReleaseInside": true,
+          "clicks": []
+        }
+      ]
+    },
+    {
+      "dragGuard": true,
+      "n": 32,
+      "correct": 30,
+      "wrong": 0,
+      "miss": 2,
+      "pressAndReleaseInside": 28,
+      "correctInside": 28,
+      "outcomes": [
+        {
+          "intended": 12,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 12,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 13,
+          "outcome": "miss",
+          "pressAndReleaseInside": false,
+          "clicks": []
+        },
+        {
+          "intended": 14,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 14,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 15,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 15,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 16,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 16,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 17,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 17,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 18,
+          "outcome": "correct",
+          "pressAndReleaseInside": false,
+          "clicks": [
+            {
+              "i": 18,
+              "trusted": false
+            }
+          ]
+        },
+        {
+          "intended": 19,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 19,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 12,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 12,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 13,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 13,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 14,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 14,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 15,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 15,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 16,
+          "outcome": "correct",
+          "pressAndReleaseInside": false,
+          "clicks": [
+            {
+              "i": 16,
+              "trusted": false
+            }
+          ]
+        },
+        {
+          "intended": 17,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 17,
+              "trusted": false
+            }
+          ]
+        },
+        {
+          "intended": 18,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 18,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 19,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 19,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 12,
+          "outcome": "miss",
+          "pressAndReleaseInside": false,
+          "clicks": []
+        },
+        {
+          "intended": 13,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 13,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 14,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 14,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 15,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 15,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 16,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 16,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 17,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 17,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 18,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 18,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 19,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 19,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 12,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 12,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 13,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 13,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 14,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 14,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 15,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 15,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 16,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 16,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 17,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 17,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 18,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 18,
+              "trusted": true
+            }
+          ]
+        },
+        {
+          "intended": 19,
+          "outcome": "correct",
+          "pressAndReleaseInside": true,
+          "clicks": [
+            {
+              "i": 19,
+              "trusted": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Scripted input, not participant data.",
+    "Review geometry only; native wrong-target clicks are never reassigned.",
+    "Fixture-only host grant bypasses native permission prompts."
+  ]
+}

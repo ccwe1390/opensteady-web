@@ -1,0 +1,2 @@
+BUTTON: 56 trials; press and release both on the target in 51; of those, click delivered in 47, browser started a drag in 4
+A: 32 trials; press and release both on the target in 28; of those, click delivered in 0, browser started a drag in 28

@@ -10,11 +10,12 @@ function mock(){
     storage:{local:store(local),session:store(session)},permissions:{async getAll(){return{origins:[...origins],permissions:['activeTab','scripting','storage']};},async contains({origins:wanted}){return wanted.every(x=>origins.has(x));},async remove({origins:wanted}){wanted.forEach(x=>origins.delete(x));return true;},onRemoved:event()},
     scripting:{async executeScript(args){injected.push(args);},async getRegisteredContentScripts(){return registered;},async unregisterContentScripts(){registered.length=0;},async registerContentScripts(values){registered.push(...values);}},
     tabs:{async query(){return[tab];},async get(id){if(id!==1)throw Error('Missing tab');return tab;},async sendMessage(id,m){configs.push(m);return null;},onRemoved:event(),onUpdated:event()},
-    action:{async setBadgeText(){},async setBadgeBackgroundColor(){}}};
+    action:{async setBadgeText(){},async setBadgeBackgroundColor(){}},commands:{onCommand:event()}};
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../extension/background.js'),'utf8'),{chrome,OpenSteadySettings:Settings,importScripts(){},URL,console,Promise});
   const sender={id:'test',url:'chrome-extension://test/ui/popup.html'};
   const send=(m,s=sender)=>new Promise(resolve=>chrome.runtime.onMessage.callbacks[0](m,s,resolve));
-  return{send,local,session,origins,registered,injected,configs,tab,chrome};
+  const command=(name,t=tab)=>new Promise(resolve=>{chrome.commands.onCommand.callbacks[0](name,t);setTimeout(resolve,20);});
+  return{send,command,local,session,origins,registered,injected,configs,tab,chrome};
 }
 test('default has no access; current-tab activation is temporary and top-level',async()=>{
   const h=mock();let r=await h.send({type:'tab-status',tabId:1});assert.equal(r.config.enabled,false);
@@ -55,3 +56,42 @@ test('clear revokes unused optional grants and forgetting switches off other tab
   h.origins.add('https://example.com/*');await h.send({type:'remember-site',tabId:1,enabled:true});h.session['tab:3']={site:'https://example.com',enabled:true};
   await h.send({type:'remember-site',tabId:1,enabled:false});assert.equal(h.session['tab:3'].enabled,false);
 });
+test('browser-level permission revocation disables existing sessions and forgets that site',async()=>{
+  const h=mock();h.origins.add('https://example.com/*');
+  await h.send({type:'remember-site',tabId:1,enabled:true});
+  h.session['tab:3']={site:'https://example.com',enabled:true};
+  h.session['tab:4']={site:'https://other.com',enabled:true};
+  h.origins.delete('https://example.com/*');
+  h.chrome.permissions.onRemoved.callbacks[0]({origins:['https://example.com/*']});
+  // Messages share the worker queue, so this waits for revocation reconciliation.
+  const r=await h.send({type:'tab-status',tabId:1});
+  assert.equal(r.config.enabled,false);assert.equal(r.remembered,false);
+  assert.equal(h.session['tab:3'].enabled,false);assert.equal(h.session['tab:4'].enabled,true);
+  assert.equal(h.registered.length,0);
+  assert.equal(h.configs.filter(m=>m.type==='configure').at(-1).config.enabled,false);
+});
+test('hold to click settings propagate without enabling an unselected site',async()=>{
+  const h=mock();const r=await h.send({type:'save-settings',settings:{dwellEnabled:true,dwellMs:1200,dragGuard:false}});
+  assert.equal(r.settings.dwellEnabled,true);assert.equal(r.settings.dwellMs,1200);
+  let state=await h.send({type:'tab-status',tabId:1});assert.equal(state.config.enabled,false);
+  await h.send({type:'set-tab',tabId:1,enabled:true});state=await h.send({type:'tab-status',tabId:1});
+  assert.equal(state.config.dwellEnabled,true);assert.equal(state.config.dwellMs,1200);assert.equal(state.config.dragGuard,false);
+  assert.equal(h.injected.at(-1).files.includes('core/dwell.js'),true);assert.equal(h.injected.at(-1).files.includes('core/jitter.js'),true);
+  assert.ok(h.injected.at(-1).files.indexOf('core/jitter.js')<h.injected.at(-1).files.indexOf('content.js'));
+});
+test('toggle-tab shortcut enables, then disables, the current tab only through activeTab injection',async()=>{
+  const h=mock();await h.command('toggle-tab');assert.equal((await h.send({type:'tab-status',tabId:1})).config.enabled,true);
+  assert.equal(h.injected.length,1);assert.equal(h.registered.length,0);assert.equal(h.origins.size,0);
+  await h.command('toggle-tab');assert.equal((await h.send({type:'tab-status',tabId:1})).config.enabled,false);
+});
+test('toggle-tab shortcut does nothing on browser pages or while paused everywhere',async()=>{
+  const h=mock();await h.command('toggle-tab',{id:1,url:'chrome://settings'});assert.equal(h.injected.length,0);
+  await h.send({type:'save-settings',settings:{enabled:false}});await h.command('toggle-tab');
+  assert.equal(h.injected.length,0);assert.equal((await h.send({type:'tab-status',tabId:1})).config.enabled,false);
+});
+test('pause-everywhere shortcut flips the global switch and keeps other settings',async()=>{
+  const h=mock();await h.send({type:'save-settings',settings:{dwellEnabled:true,outline:'bold'}});
+  await h.command('pause-everywhere');let s=(await h.send({type:'get-settings'})).settings;assert.equal(s.enabled,false);assert.equal(s.dwellEnabled,true);assert.equal(s.outline,'bold');
+  await h.command('pause-everywhere');s=(await h.send({type:'get-settings'})).settings;assert.equal(s.enabled,true);
+});
+test('unknown shortcut names are ignored',async()=>{const h=mock();await h.command('format-disk');assert.equal(h.injected.length,0);assert.equal(h.local.settings,undefined);});

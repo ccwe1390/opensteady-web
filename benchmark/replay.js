@@ -5,6 +5,7 @@
   const S = node ? require('../extension/core/selector.js') : root.OpenSteadySelect;
   const P = node ? require('../extension/core/policy.js') : root.OpenSteadyPolicy;
   const R = node ? require('./robot.js') : root.OpenSteadyRobot;
+  const J = node ? require('../extension/core/jitter.js') : root.OpenSteadyJitter;
   const modes = ['off','nearest','stable','adaptive'];
   function hit(targets, x, y) {
     const inside = targets.filter(r => S.distToRect(x,y,r) === 0);
@@ -42,7 +43,7 @@
     return data;
   }
   function replayTrial(trial, mode, opts = {}) {
-    const selector = selectorFor(mode, opts), policy = new P.ClickPolicy({ doubleGuard: false });
+    const selector = selectorFor(mode, opts), policy = new P.ClickPolicy({ doubleGuard: false }), meter = new J.JitterMeter();
     let selected = null, previewSince = 0, previous = null, selectedAtDown = null, downHit = null, upHit = null, switches = 0, redirects = 0;
     let final = null, callbackMs = [], abstentions = 0, updates = 0;
     const pressT = trial.samples.find(s => s.type === 'down').t;
@@ -57,9 +58,10 @@
       }
       if (e.type === 'down') {
         selectedAtDown = selected; downHit = physical;
+        // Same inputs as the controller: the shake measured before the press sets how far the press may wander.
         policy.down({ ...e, button: 0, pointerType: 'mouse', pointerId: 1, hitId: physical, selectedId: selected,
-          canRedirect: mode !== 'off', previewAge: e.t - previewSince });
-      } else if (e.type === 'move') policy.move(e);
+          canRedirect: mode !== 'off', previewAge: e.t - previewSince, slipLimit: J.limitFor(meter.estimate(e.t)) });
+      } else if (e.type === 'move') { if (!policy.press) meter.add(e.t, e.x, e.y); policy.move(e); }
       else {
         upHit = physical;
         policy.up({ ...e, pointerId: 1, hitId: physical });

@@ -1,0 +1,24 @@
+Hover is the time between the end of the reach and the press. "Limit widened" is the share of presses
+where the meter gave a figure of more than 4 px, so the press limit was more than 12 px.
+
+RMS 8 px, 1800 trials per row
+  hover 0.00 s   limit widened   1.0%   correct: off  81.2%  on  81.9%   wrong: off   0.0%  on   0.0%
+  hover 0.05 s   limit widened   8.6%   correct: off  80.7%  on  83.1%   wrong: off   0.1%  on   0.1%
+  hover 0.10 s   limit widened  43.3%   correct: off  81.6%  on  88.5%   wrong: off   0.0%  on   0.0%
+  hover 0.15 s   limit widened  91.4%   correct: off  79.6%  on  96.8%   wrong: off   0.1%  on   0.1%
+  hover 0.20 s   limit widened  98.6%   correct: off  80.7%  on  97.3%   wrong: off   0.0%  on   0.0%
+  hover 0.30 s   limit widened  98.6%   correct: off  80.1%  on  97.1%   wrong: off   0.1%  on   0.1%
+  hover 0.45 s   limit widened  98.6%   correct: off  80.8%  on  97.7%   wrong: off   0.1%  on   0.1%
+  hover 0.60 s   limit widened  98.7%   correct: off  79.6%  on  97.2%   wrong: off   0.1%  on   0.1%
+
+RMS 16 px, 1800 trials per row
+  hover 0.00 s   limit widened   8.9%   correct: off  26.7%  on  30.1%   wrong: off   1.6%  on   1.6%
+  hover 0.05 s   limit widened  30.4%   correct: off  28.0%  on  40.4%   wrong: off   1.3%  on   1.3%
+  hover 0.10 s   limit widened  70.4%   correct: off  25.2%  on  59.2%   wrong: off   1.8%  on   1.8%
+  hover 0.15 s   limit widened  98.4%   correct: off  27.3%  on  73.4%   wrong: off   1.4%  on   1.4%
+  hover 0.20 s   limit widened 100.0%   correct: off  25.1%  on  73.1%   wrong: off   1.3%  on   1.3%
+  hover 0.30 s   limit widened 100.0%   correct: off  25.6%  on  75.1%   wrong: off   1.3%  on   1.3%
+  hover 0.45 s   limit widened 100.0%   correct: off  27.7%  on  75.7%   wrong: off   1.2%  on   1.2%
+  hover 0.60 s   limit widened 100.0%   correct: off  27.0%  on  75.1%   wrong: off   1.2%  on   1.2%
+
+Synthetic paths only. A real hand that presses the instant it arrives gets little or no help from the wider limit.

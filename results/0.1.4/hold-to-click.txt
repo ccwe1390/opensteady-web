@@ -1,0 +1,1 @@
+jitter 4px at 100 moves/s  ms to activation (null = none in 6 s): [1105,1095,1047,1091,1062,1049]

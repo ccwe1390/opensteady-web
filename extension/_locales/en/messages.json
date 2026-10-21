@@ -1,0 +1,282 @@
+{
+  "langTag": {
+    "message": "en",
+    "description": "BCP 47 language tag of this translation, used for the page's lang attribute."
+  },
+  "extName": {
+    "message": "OpenSteady Web",
+    "description": "Extension name. Usually not translated."
+  },
+  "extDescription": {
+    "message": "Optional help with near misses, slips, quick drags and repeated clicks, plus hold to click without pressing, inside webpages.",
+    "description": "Store short description; at most 132 characters."
+  },
+  "cmdToggleTab": {
+    "message": "Turn assistance on or off on this tab",
+    "description": "Keyboard shortcut description."
+  },
+  "cmdPauseAll": {
+    "message": "Pause or resume assistance everywhere",
+    "description": "Keyboard shortcut description."
+  },
+  "errRegularPage": {
+    "message": "Open a regular http or https webpage."
+  },
+  "errNotGranted": {
+    "message": "Site permission was not granted."
+  },
+  "errDeclined": {
+    "message": "Permission declined. You can still enable just this tab."
+  },
+  "errOpenWebpage": {
+    "message": "Open a regular webpage to use OpenSteady."
+  },
+  "popupTagline": {
+    "message": "A little room around your clicks."
+  },
+  "statusChecking": {
+    "message": "Checking this page…"
+  },
+  "statusOn": {
+    "message": "On · $SITE$",
+    "placeholders": {
+      "site": {
+        "content": "$1",
+        "example": "https://example.com"
+      }
+    }
+  },
+  "statusOff": {
+    "message": "Off · $SITE$",
+    "placeholders": {
+      "site": {
+        "content": "$1",
+        "example": "https://example.com"
+      }
+    }
+  },
+  "statusPausedPage": {
+    "message": "Paused on this page · $SITE$",
+    "placeholders": {
+      "site": {
+        "content": "$1",
+        "example": "https://example.com"
+      }
+    }
+  },
+  "statusPausedAll": {
+    "message": "Paused everywhere"
+  },
+  "btnEnableTab": {
+    "message": "Enable on this tab"
+  },
+  "btnDisableTab": {
+    "message": "Turn off on this tab"
+  },
+  "btnRemember": {
+    "message": "Always enable on this site"
+  },
+  "btnForget": {
+    "message": "Turn off & forget this site"
+  },
+  "btnDwellOn": {
+    "message": "Turn on hold to click"
+  },
+  "btnDwellOff": {
+    "message": "Turn off hold to click"
+  },
+  "btnPauseAll": {
+    "message": "Pause everywhere"
+  },
+  "btnResumeAll": {
+    "message": "Resume everywhere"
+  },
+  "popupDwellHelp": {
+    "message": "Optional: keep the outline on a target until its progress bar fills to click without pressing. Move away to click again."
+  },
+  "popupEscapeHelp": {
+    "message": "[[Escape]] pauses this page; resume it here. A click made with Shift, Control, Command or Option held is left to the browser.",
+    "description": "Text in [[double brackets]] is shown as a key. Keep the brackets; translate the key name only if keyboards in your language label it differently."
+  },
+  "popupShortcutHelp": {
+    "message": "Keyboard shortcut for this tab: $KEYS$. Change it at chrome://extensions/shortcuts.",
+    "placeholders": {
+      "keys": {
+        "content": "$1",
+        "example": "Alt+Shift+S"
+      }
+    }
+  },
+  "popupNoShortcut": {
+    "message": "No keyboard shortcut is set. Add one at chrome://extensions/shortcuts."
+  },
+  "statsCounts": {
+    "message": "$REDIRECTS$ corrections · $GUARDED$ repeat clicks blocked",
+    "placeholders": {
+      "redirects": {
+        "content": "$1"
+      },
+      "guarded": {
+        "content": "$2"
+      }
+    }
+  },
+  "statsDwell": {
+    "message": "$DWELL$ hold to click activations · $ERRORS$ internal errors on this page",
+    "placeholders": {
+      "dwell": {
+        "content": "$1"
+      },
+      "errors": {
+        "content": "$2"
+      }
+    }
+  },
+  "statsDrags": {
+    "message": "$PREVENTED$ quick drags cancelled · $PRESERVED$ ended as the browser's own click · $REJECTED$ clicks stopped because the press went too far, lasted too long, or did not reach the pressed control",
+    "placeholders": {
+      "prevented": {
+        "content": "$1"
+      },
+      "preserved": {
+        "content": "$2"
+      },
+      "rejected": {
+        "content": "$3"
+      }
+    }
+  },
+  "statsCapped": {
+    "message": "Page is too complex; target assistance is paused."
+  },
+  "linkSettings": {
+    "message": "Settings & privacy"
+  },
+  "optTitle": {
+    "message": "OpenSteady settings"
+  },
+  "optVersion": {
+    "message": "Version $VERSION$ · Early release for desktop Chrome. Not yet tested in Edge.",
+    "placeholders": {
+      "version": {
+        "content": "$1",
+        "example": "0.1.5"
+      }
+    }
+  },
+  "optAssistance": {
+    "message": "Assistance"
+  },
+  "optEnabled": {
+    "message": "Enable assistance on the tabs and sites I choose"
+  },
+  "optDoubleGuard": {
+    "message": "Block repeated clicks on the same control within 300 milliseconds"
+  },
+  "optDragGuard": {
+    "message": "Keep a quick drag on a link or button as a click"
+  },
+  "optDragGuardHelp": {
+    "message": "On unless you switch it off. A browser turns a press on a link into a drag as soon as the pointer moves, and then no click happens. With this on, a drag that begins within half a second of the press is cancelled, so the press can finish as a click. To drag a link on purpose, press, wait half a second, then move. A drag that begins at once is cancelled however far it goes. If that press then travels more than 48 pixels or lasts longer than 1.2 seconds, nothing is clicked, and a click that lands anywhere other than the pressed link or button is stopped. When the pointer was not steady just before the press, a quick drag of selected text or a picture right beside the outlined target is cancelled as well. Apart from that, the rule looks only at timing. It does not identify whether your movement is tremor. Forms, risky links, and anything a page marks as draggable are left alone, and so is a drag that the page itself cancels or stops."
+  },
+  "optDwellEnabled": {
+    "message": "Hold to click: activate an outlined target without pressing the mouse"
+  },
+  "optDwellMs": {
+    "message": "Hold to click time"
+  },
+  "optDwell500": {
+    "message": "0.5 seconds"
+  },
+  "optDwell900": {
+    "message": "0.9 seconds"
+  },
+  "optDwell1200": {
+    "message": "1.2 seconds"
+  },
+  "optDwell1500": {
+    "message": "1.5 seconds"
+  },
+  "optDwell2000": {
+    "message": "2 seconds"
+  },
+  "optDwellHelp": {
+    "message": "Hold to click is off initially. Small movements can continue while the outline stays on the same target. The progress bar shows the countdown. Move at least 32 pixels away for a quarter second to allow another activation. Typing, clicking, scrolling, leaving the page, and holding Option or Alt stop the countdown. Automatic clicks may not work on sites that require native input."
+  },
+  "optMode": {
+    "message": "Target selection"
+  },
+  "optModeStable": {
+    "message": "Steady selection (smoothing and memory)"
+  },
+  "optModeNearest": {
+    "message": "Nearest target (comparison baseline)"
+  },
+  "optModeHelp": {
+    "message": "Near misses need a visible outline first. Correct clicks pass through. A press may wander 12 pixels and still count. When the pointer was shaking just before the press, that distance becomes three times the measured shake, up to 48 pixels, for presses of 0.6 seconds or less. It starts to grow at about 4 pixels of shake. Measuring the shake needs the pointer to hover near the target for about a fifth of a second first. With a steady hand, a press that lands on selected text, or that selects text on its way, is left to the browser as text selection. A hand counts as steady when its measured shake is under 2 pixels, and also when the shake could not be measured, for example when you press the moment you arrive or when the shake is very slow. A click made with Shift, Control, Command or Option held is left to the browser, which then does what that key normally does: Option or Alt with a click downloads a link. Press [[Escape]] to pause a page, then use the toolbar to resume.",
+    "description": "Text in [[double brackets]] is shown as a key."
+  },
+  "optOutline": {
+    "message": "Outline style"
+  },
+  "optOutlineStandard": {
+    "message": "Standard: thin green"
+  },
+  "optOutlineBold": {
+    "message": "Bold: thick green"
+  },
+  "optOutlineContrast": {
+    "message": "High contrast: black on yellow"
+  },
+  "optOutlineHelp": {
+    "message": "Changes only how the outline looks. It does not change which target is chosen, or when."
+  },
+  "optShortcuts": {
+    "message": "Keyboard shortcuts"
+  },
+  "optShortcutsHelp": {
+    "message": "Two shortcuts are available: turn assistance on or off on the current tab (Alt+Shift+S by default, Control+Shift+S on a Mac), and pause or resume assistance everywhere (no key by default). Change or add keys at chrome://extensions/shortcuts. The tab shortcut does nothing while assistance is paused everywhere, or on browser pages."
+  },
+  "btnSave": {
+    "message": "Save settings"
+  },
+  "saved": {
+    "message": "Saved."
+  },
+  "optSites": {
+    "message": "Sites you enabled"
+  },
+  "optNoSites": {
+    "message": "No remembered sites."
+  },
+  "optSitesHelp": {
+    "message": "Use the toolbar on a site to turn it off and revoke its permission. A remembered site includes all ports on the same scheme and hostname. Temporary tab choices last until the browser closes."
+  },
+  "optPrivacy": {
+    "message": "Privacy"
+  },
+  "optPrivacy1": {
+    "message": "No accounts, analytics, advertising, network requests, or remote code. Settings and chosen site names are saved locally. Page contents, pointer paths, and what you type are never stored by the extension. To measure shake, the last fraction of a second of pointer positions is held in memory and then discarded. Diagnostic counts stay in memory until the page reloads."
+  },
+  "optPrivacy2": {
+    "message": "On enabled pages, OpenSteady reads control geometry and short labels to decide whether assistance is appropriate. Trace recording is available only in the separate local lab, with explicit start and export buttons."
+  },
+  "optLimits": {
+    "message": "Where assistance stops"
+  },
+  "optLimits1": {
+    "message": "Top-level http and https webpages only. Browser tabs, the address bar, PDFs in the browser viewer, desktop apps, iframes, shadow DOM components, touch, and pen are outside this release."
+  },
+  "optLimits2": {
+    "message": "Forms, payments, destructive controls, text editing, file pickers, and unlabeled controls receive ordinary clicks. Risk detection is conservative and imperfect; this is not a guarantee against accidental actions. Some sites require trusted native input or react before the click, so redirected clicks may not work there. Turn assistance off for those sites."
+  },
+  "optLimits3": {
+    "message": "This is an experimental accessibility tool. Benefit for people with tremor has not been established."
+  },
+  "btnClear": {
+    "message": "Clear settings and revoke remembered site access"
+  },
+  "cleared": {
+    "message": "Cleared. No sites are enabled."
+  }
+}

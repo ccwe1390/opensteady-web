@@ -1,0 +1,33 @@
+name: release
+on:
+  push:
+    tags: ['v*.*.*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Tag must match the manifest version
+        run: |
+          version=$(node -p "require('./extension/manifest.json').version")
+          test "v$version" = "$GITHUB_REF_NAME" || { echo "Tag $GITHUB_REF_NAME does not match manifest $version"; exit 1; }
+      - run: npm test
+      - run: npm run check
+      - run: python3 tools/package.py
+      - name: Publish GitHub Release (not a store submission)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(node -p "require('./extension/manifest.json').version")
+          notes=$(awk -v v="## $version" 'index($0,v)==1{p=1;next} /^## /{p=0} p' CHANGELOG.md)
+          gh release create "$GITHUB_REF_NAME" dist/*.zip dist/SHA256SUMS.txt \
+            --title "OpenSteady Web $version" \
+            --notes "$notes
+
+          Experimental release. Benefit for people with tremor has not been established. Not published in the Chrome Web Store." \
+            --prerelease

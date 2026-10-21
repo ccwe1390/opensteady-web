@@ -12,7 +12,7 @@
     return label;
   }
   function eligible(el) {
-    if (blocked(el) || el.closest(EDITABLE)) return false;
+    if (blocked(el) || sensitive(el)) return false;
     const tag = el.tagName;
     if (el.closest('form')) return false;
     if (tag === 'LABEL' || tag === 'SELECT' || tag === 'TEXTAREA') return false;
@@ -29,7 +29,11 @@
   }
   function sensitive(el) {
     if (!(el instanceof Element)) return true;
-    return !!el.closest(EDITABLE + ',label,[role="slider"],[role="combobox"],[role="listbox"],[role="menu"],[role="grid"],svg,iframe');
+    if (el.closest(EDITABLE + ',form,label,[data-opensteady-no-assist],[role="slider"],[role="combobox"],[role="listbox"],[role="menu"],[role="grid"],svg,iframe')) return true;
+    // Closed shadow roots cannot be inspected. Treat custom-element subtrees and
+    // exposed shadow hosts as opaque so their retargeted clicks stay native.
+    for (let p = el; p; p = p.parentElement) if (p.shadowRoot || p.localName?.includes('-')) return true;
+    return false;
   }
   function actualControl(node) {
     if (!(node instanceof Element)) return null;
@@ -114,7 +118,7 @@
       if (!eligible(el)) return null;
       const rect = el.getBoundingClientRect(), r = { id, x: rect.left, y: rect.top, w: rect.width, h: rect.height };
       const style = getComputedStyle(el);
-      if (r.w < 1 || r.h < 1 || style.visibility !== 'visible' || Number(style.opacity) < 0.1 || style.pointerEvents === 'none') return null;
+      if (el.getClientRects().length !== 1 || r.w < 1 || r.h < 1 || style.visibility !== 'visible' || Number(style.opacity) < 0.1 || style.pointerEvents === 'none') return null;
       if (oldRect && !sameRect(oldRect, r)) return null;
       if (!this.exposed(el, r)) return null;
       // Transparent ancestors also make a target unsuitable.

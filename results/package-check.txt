@@ -1,1 +1,5 @@
-Syntax and package checks passed (22 JavaScript files). Runtime extension has no network/eval calls and no mandatory host grants.
+
+> opensteady-web@0.1.4 check
+> node test/check.cjs
+
+Syntax and package checks passed (40 JavaScript files). Runtime extension has no network/eval calls and no mandatory host grants.
